@@ -1,0 +1,14 @@
+#!/bin/python
+
+import sys
+
+"""
+xbps-query man page says:
+  - ii Package is installed.
+  - uu Package is unpacked but must be configured with xbps-reconfigure(1).
+  - hr Package is half-removed, and can be fully removed with xbps-remove(1).
+  - ?? Package state is unknown.
+"""
+for pkg in sys.stdin.read().split('\n'):
+    if pkg.startswith('ii'):
+          print('-'.join(pkg.split()[1].split('-')[:-1]))
