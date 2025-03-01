@@ -1,0 +1,10 @@
+BAT=BAT1
+DIV="|"
+
+VOLUME="$(amixer sget 'Master' | tail -n 1 | cut -d ' ' -f 7 | sed 's/[[]/''/g; s/[]]/''/g')"
+BRIGHTNESS="$(($(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/255))%"
+BAT_CAPACITY="$(cat "/sys/class/power_supply/$BAT/capacity")%"
+BAT_STATUS="($(cat "/sys/class/power_supply/$BAT/status"))"
+DATE="$(date +"%b %d %A %H:%M")"
+
+xsetroot -name "$DIV   $BRIGHTNESS $DIV   $VOLUME $DIV  $BAT_CAPACITY $BAT_STATUS $DIV   $DATE"
