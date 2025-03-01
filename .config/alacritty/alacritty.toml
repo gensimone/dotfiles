@@ -1,0 +1,13 @@
+[window]
+opacity = 0.5
+
+[font]
+normal = { family = "Ubuntu Mono Nerd Font", style = "regular"  }
+bold = { family = "Ubuntu Mono Nerd Font", style = "bold"  }
+size = 12
+
+[cursor]
+style = { shape = "UnderLine", blinking = "On" }
+
+[mouse]
+hide_when_typing = true
