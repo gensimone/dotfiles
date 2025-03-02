@@ -596,8 +596,6 @@ xcb-util-image
 xcb-util-keysyms
 xcb-util-renderutil
 xcolor
-xdg-user-dirs
-xdg-utils
 xen-libs
 xf86-input-libinput
 xfsprogs
