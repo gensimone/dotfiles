@@ -1,12 +1,12 @@
 XF86AudioRaiseVolume
-	amixer sset 'Master' 10%+ && $HOME/.dwm/status_bar.sh
+	amixer sset 'Master' 10%+ && update-dwm-status-bar
 XF86AudioLowerVolume
-	amixer sset 'Master' 10%- && $HOME/.dwm/status_bar.sh
+	amixer sset 'Master' 10%- && update-dwm-status-bar
 XF86AudioMute
-        amixer sset 'Master' 0% && $HOME/.dwm/status_bar.sh
+        amixer sset 'Master' 0% && update-dwm-status-bar
 XF86MonBrightnessUp
-	brightnessctl set 10%+ && $HOME/.dwm/status_bar.sh
+	brightnessctl set 10%+ && update-dwm-status-bar
 XF86MonBrightnessDown
-	brightnessctl set 10%- && $HOME/.dwm/status_bar.sh
+	brightnessctl set 10%- && update-dwm-status-bar
 alt + Escape
 	slock
