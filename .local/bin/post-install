@@ -48,6 +48,7 @@ UseDefaultInterface=true" | sudo tee /etc/iwd/main.conf >/dev/null
 #
 # Keyboard (caps lock as ctrl)
 #
+sudo mkdir -p /etc/X11/xorg.conf.d
 echo "Section \"InputClass\"
     Identifier \"system-keyboard\"
     MatchIsKeyboard \"on\"
