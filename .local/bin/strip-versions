@@ -4,12 +4,6 @@ from subprocess import run, PIPE
 
 completed_process = run('xbps-query -l', stdout=PIPE, check=True, shell=True)
 
-pkgs_to_exclude = {
-    'musl',
-    'musl-devel',
-    'musl-fts',
-}
-
 """
 xbps-query man page says:
   - ii Package is installed.
@@ -20,5 +14,4 @@ xbps-query man page says:
 for pkg in completed_process.stdout.decode().split('\n'):
     if pkg.startswith('ii'):
         stripped_pkg = '-'.join(pkg.split()[1].split('-')[:-1])
-        if stripped_pkg not in pkgs_to_exclude:
-            print(stripped_pkg)
+        print(stripped_pkg)
