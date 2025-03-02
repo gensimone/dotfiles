@@ -1,6 +1,14 @@
 #!/bin/python
+from subprocess import run, PIPE
 
-import sys
+
+completed_process = run('xbps-query -l', stdout=PIPE, check=True, shell=True)
+
+pkgs_to_exclude = {
+    'musl',
+    'musl-devel',
+    'musl-fts',
+}
 
 """
 xbps-query man page says:
@@ -9,6 +17,8 @@ xbps-query man page says:
   - hr Package is half-removed, and can be fully removed with xbps-remove(1).
   - ?? Package state is unknown.
 """
-for pkg in sys.stdin.read().split('\n'):
+for pkg in completed_process.stdout.decode().split('\n'):
     if pkg.startswith('ii'):
-          print('-'.join(pkg.split()[1].split('-')[:-1]))
+        stripped_pkg = '-'.join(pkg.split()[1].split('-')[:-1])
+        if stripped_pkg not in pkgs_to_exclude:
+            print(stripped_pkg)
