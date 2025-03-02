@@ -52,7 +52,7 @@ echo "Section \"InputClass\"
     Identifier \"system-keyboard\"
     MatchIsKeyboard \"on\"
     Option \"XkbOptions\" \"ctrl:nocaps\"
-EndSection" | sudo tee /etc/X11/xorg.conf.d/00-keyboard.conf
+EndSection" | sudo tee /etc/X11/xorg.conf.d/00-keyboard.conf >/dev/null
 #
 # Touchpad (enables tapping)
 #
@@ -62,7 +62,7 @@ echo "Section \"InputClass\"
     MatchDevicePath \"/dev/input/event*\"
     Driver \"libinput\"
     Option \"Tapping\" \"on\"
-EndSection" | sudo tee /etc/X11/xorg.conf.d/40-libinput.conf
+EndSection" | sudo tee /etc/X11/xorg.conf.d/40-libinput.conf >/dev/null
 
 
 # Pipewire (https://docs.voidlinux.org/config/media/pipewire.html)
@@ -113,3 +113,16 @@ git -C $HOME/Sources/slock apply $HOME/.suckless-patches/slock-v1.diff
 # Compile
 sudo make clean install -C $HOME/Sources/dwm
 sudo make clean install -C $HOME/Sources/slock
+
+
+# Grub
+#
+echo "#
+# Configuration file for GRUB.
+#
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=1
+GRUB_DISTRIBUTOR=\"Void\"
+GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3\"
+GRUB_BACKGROUND=/usr/share/void-artwork/splash.png" | sudo tee /etc/default/grub >/dev/null
+sudo update-grub
