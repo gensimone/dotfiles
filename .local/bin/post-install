@@ -20,7 +20,7 @@ sudo ln -sv /etc/sv/iwd        /var/service
 # Session and Seat Management (https://docs.voidlinux.org/config/session-management.html)
 #
 sudo ln -sv /etc/sv/turnstiled /var/service
-sudo ln -sv /etc/sv/seatd      /vat/service
+sudo ln -sv /etc/sv/seatd      /var/service
 #
 # Virtualization (https://docs.voidlinux.org/config/containers-and-vms/libvirt.html)
 #
@@ -40,19 +40,18 @@ sudo ln -sv /etc/sv/virtlockd  /var/service
 # by creating a symbolic link to /dev/null at /etc/udev/rules.d/80-net-name-slot.rules to mask the 
 # renaming rule. This alternative approach will affect the naming of all network devices
 #
-sudo echo "[General]
-UseDefaultInterface=true
-" > /etc/iwd/main.conf
+echo "[General]
+UseDefaultInterface=true" | sudo tee /etc/iwd/main.conf >/dev/null
 
 
 # Pipewire (https://docs.voidlinux.org/config/media/pipewire.html)
 #
 sudo mkdir -p /etc/pipewire/pipewire.conf.d
 sudo mkdir -p /etc/alsa/conf.d
-sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf  /etc/pipewire/pipewire.conf.d/
-sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf  /etc/pipewire/pipewire.conf.d/
-sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf         /etc/alsa/conf.d
-sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+sudo ln -sv /usr/share/examples/wireplumber/10-wireplumber.conf  /etc/pipewire/pipewire.conf.d/
+sudo ln -sv /usr/share/examples/pipewire/20-pipewire-pulse.conf  /etc/pipewire/pipewire.conf.d/
+sudo ln -sv /usr/share/alsa/alsa.conf.d/50-pipewire.conf         /etc/alsa/conf.d
+sudo ln -sv /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
 
 # Groups (https://docs.voidlinux.org/config/users-and-groups.html)
@@ -68,4 +67,4 @@ sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 #	you have the polkit and dbus packages installed and you enable the dbus service, libvirtd 
 #	will grant necessary privileges to any user added to the libvirt group.
 #
-sudo usermod -aG socklog,libvirt, $USER
+sudo usermod -aG socklog,libvirt $USER
