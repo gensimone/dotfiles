@@ -1,0 +1,69 @@
+#!/bin/bash
+#
+# Author: Simone Gentili (gensimone on GitHub)
+
+# Packages
+#
+sudo xbps-install "$(cat $HOME/.pkgs)"
+
+# Services (https://docs.voidlinux.org/config/services/index.html)
+#
+sudo ln -sv /etc/sv/acpid      /var/service
+sudo ln -sv /etc/sv/dbus       /var/service
+sudo ln -sv /etc/sv/tlp        /var/service
+sudo ln -sv /etc/sv/bluetoothd /var/service
+sudo ln -sv /etc/sv/dhcpcd     /var/service
+sudo ln -sv /etc/sv/iwd        /var/service
+#
+# Session and Seat Management (https://docs.voidlinux.org/config/session-management.html)
+#
+sudo ln -sv /etc/sv/turnstiled /var/service
+sudo ln -sv /etc/sv/seatd      /vat/service
+#
+# Virtualization (https://docs.voidlinux.org/config/containers-and-vms/libvirt.html)
+#
+sudo ln -sv /etc/sv/libvirtd   /var/service
+sudo ln -sv /etc/sv/virtlogd   /var/service
+sudo ln -sv /etc/sv/virtlockd  /var/service
+
+
+# IWD https://docs.voidlinux.org/config/network/iwd.html
+#
+# By default, IWD will create and destroy the wireless interfaces (e.g. wlan0) that it manages. 
+# This can interfere with udevd, which may attempt to rename the interface using its rules for 
+# persistent network interface names. A simple fix is to prevent IWD from manipulating the network 
+# interfaces in this way by adding UseDefaultInterface=true to the [General] section of 
+# /etc/iwd/main.conf. An alternative approach is to disable the use of persistent network interface 
+# names by udevd. This may be accomplished either by adding net.ifnames=0 to your kernel cmdline or 
+# by creating a symbolic link to /dev/null at /etc/udev/rules.d/80-net-name-slot.rules to mask the 
+# renaming rule. This alternative approach will affect the naming of all network devices
+#
+sudo echo "[General]
+UseDefaultInterface=true
+" > /etc/iwd/main.conf
+
+
+# Pipewire (https://docs.voidlinux.org/config/media/pipewire.html)
+#
+sudo mkdir -p /etc/pipewire/pipewire.conf.d
+sudo mkdir -p /etc/alsa/conf.d
+sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf  /etc/pipewire/pipewire.conf.d/
+sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf  /etc/pipewire/pipewire.conf.d/
+sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf         /etc/alsa/conf.d
+sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+
+
+# Groups (https://docs.voidlinux.org/config/users-and-groups.html)
+# 
+# default groups: $USER wheel floppy audio video cdrom optical kvm users xbuilder
+#
+# Extra groups:
+# - socklog 
+# 	the ability to read logs is limited to root and users who are part of the socklog group.
+# - libvirt
+# 	Most virsh commands require root privileges to run due to the communications channels 
+#	used to talk to the hypervisor. Running as non root will return an error. However, if 
+#	you have the polkit and dbus packages installed and you enable the dbus service, libvirtd 
+#	will grant necessary privileges to any user added to the libvirt group.
+#
+sudo usermod -aG socklog,libvirt, $USER
