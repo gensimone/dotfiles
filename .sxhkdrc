@@ -4,6 +4,12 @@ XF86AudioLowerVolume
 	amixer sset 'Master' 10%- && update-dwm-status-bar
 XF86AudioMute
         amixer sset 'Master' 0% && update-dwm-status-bar
+alt + shift + i
+	amixer sset 'Master' 10%+ && update-dwm-status-bar
+alt + shift + d
+	amixer sset 'Master' 10%- && update-dwm-status-bar
+alt + shift + m
+        amixer sset 'Master' 0% && update-dwm-status-bar
 XF86MonBrightnessUp
 	brightnessctl set 10%+ && update-dwm-status-bar
 XF86MonBrightnessDown
