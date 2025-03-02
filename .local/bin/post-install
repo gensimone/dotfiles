@@ -4,6 +4,7 @@
 
 # Packages
 #
+sudo xbps-install -Suy
 sudo xbps-install -y $(cat $HOME/.pkgs)
 [ $? -gt 0 ] && exit 1
 
