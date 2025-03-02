@@ -1,5 +1,5 @@
 pipewire &
-picom &
+picom --config $HOME/.picomrc &
 dunst -config $HOME/.dunstrc &
 pidof batsignal >/dev/null || batsignal -b -m 3 -e
 xautolock -time 5 -locker slock &
