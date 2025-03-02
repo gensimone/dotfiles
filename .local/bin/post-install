@@ -68,3 +68,27 @@ sudo ln -sv /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.
 #	will grant necessary privileges to any user added to the libvirt group.
 #
 sudo usermod -aG socklog,libvirt $USER
+
+
+# Home directories
+#
+mkdir $HOME/Documents $HOME/Downloads $HOME/Music
+mkdir $HOME/Sources   $HOME/Venv      $HOME/Video
+mkdir $HOME/Pictures
+
+
+# Suckless tools
+#
+# Clone
+#
+git clone https://git.suckless.org/dwm   $HOME/Sources/dwm
+git clone https://git.suckless.org/slock $HOME/Sources/slock
+#
+# Patch
+#
+git -C $HOME/Sources/dwm   apply $HOME/.suckless-patches/dwm-v1.diff
+git -C $HOME/Sources/slock apply $HOME/.suckless-patches/slock-v1.diff
+#
+# Compile
+sudo make clean install -C $HOME/Sources/dwm
+sudo make clean install -C $HOME/Sources/slock
