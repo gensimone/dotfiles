@@ -44,6 +44,27 @@ echo "[General]
 UseDefaultInterface=true" | sudo tee /etc/iwd/main.conf >/dev/null
 
 
+# X.org
+#
+# Keyboard (caps lock as ctrl)
+#
+echo "Section \"InputClass\"
+    Identifier \"system-keyboard\"
+    MatchIsKeyboard \"on\"
+    Option \"XkbOptions\" \"ctrl:nocaps\"
+EndSection" | sudo tee /etc/X11/xorg.conf.d/00-keyboard.conf
+#
+# Touchpad (enables tapping)
+#
+echo "Section \"InputClass\"
+    Identifier \"libinput touchpad catchall\"
+    MatchIsTouchpad \"on\"
+    MatchDevicePath \"/dev/input/event*\"
+    Driver \"libinput\"
+    Option \"Tapping\" \"on\"
+EndSection" | sudo tee /etc/X11/xorg.conf.d/40-libinput.conf
+
+
 # Pipewire (https://docs.voidlinux.org/config/media/pipewire.html)
 #
 sudo mkdir -p /etc/pipewire/pipewire.conf.d
