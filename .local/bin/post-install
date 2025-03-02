@@ -116,6 +116,17 @@ sudo make clean install -C $HOME/Sources/dwm
 sudo make clean install -C $HOME/Sources/slock
 
 
+# DNS
+#
+echo "# DNS servers
+#
+# Cloudflare
+#
+nameserver 1.1.1.1
+nameserver 1.0.0.1" | sudo tee /etc/resolv.conf >/dev/null
+sudo chattr +i /etc/resolv.conf
+
+
 # Grub
 #
 echo "#
