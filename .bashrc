@@ -19,9 +19,4 @@ yt-download() {
   deactivate
 }
 
-_GREEN=$(tput setaf 2)
-_BLUE=$(tput setaf 4)
-_RED=$(tput setaf 1)
-_RESET=$(tput sgr0)
-_BOLD=$(tput bold)
-export PS1="[${_GREEN}\u ${_BLUE}${_BOLD}\w${_RESET}]${_BOLD}\$ ${_RESET}"
+export PS1="[\u \w]\$ "
