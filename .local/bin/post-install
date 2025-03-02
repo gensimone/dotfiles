@@ -5,6 +5,7 @@
 # Packages
 #
 sudo xbps-install "$(cat $HOME/.pkgs)"
+[ $? -gt 0 ] && exit 1
 
 # Services (https://docs.voidlinux.org/config/services/index.html)
 #
