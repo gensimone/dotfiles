@@ -69,7 +69,6 @@ eudev-libudev
 expat
 expat-devel
 f2fs-tools
-fastfetch
 fdk-aac
 feh
 ffmpeg
@@ -409,6 +408,7 @@ musl-obstack
 ncurses
 ncurses-base
 ncurses-libs
+neofetch
 nettle
 nghttp2
 nspr
@@ -621,7 +621,6 @@ xvidcore
 xxd
 xz
 yajl
-yyjson
 zd1211-firmware
 zix
 zlib
