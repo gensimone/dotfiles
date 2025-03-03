@@ -96,7 +96,7 @@ sudo usermod -aG socklog,libvirt $USER
 # Home directories
 #
 mkdir $HOME/Documents $HOME/Downloads $HOME/Music
-mkdir $HOME/Sources   $HOME/Venv      $HOME/Video
+mkdir $HOME/Sources   $HOME/Venvs     $HOME/Video
 mkdir -p $HOME/Pictures/Screenshots
 
 
