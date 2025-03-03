@@ -139,3 +139,6 @@ GRUB_DISTRIBUTOR=\"Void\"
 GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3\"
 GRUB_BACKGROUND=/usr/share/void-artwork/splash.png" | sudo tee /etc/default/grub >/dev/null
 sudo update-grub
+
+
+# WidevineCdm crash Fix (https://info.tweetor.org/public/musl-firefox.html) [musl only]
