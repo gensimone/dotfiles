@@ -62,6 +62,7 @@ dunst
 e2fsprogs
 e2fsprogs-libs
 efibootmgr
+elfutils
 ethtool
 eudev
 eudev-libudev
@@ -87,6 +88,7 @@ fribidi
 fuse
 gawk
 gcc
+gcompat
 gdb
 gdb-common
 gdbm
@@ -340,6 +342,7 @@ libtdb
 libthai
 libtheora
 libtirpc
+libucontext
 libunbound
 libunistring
 liburcu
@@ -402,6 +405,7 @@ mujs
 musl
 musl-devel
 musl-fts
+musl-obstack
 ncurses
 ncurses-base
 ncurses-libs
@@ -428,6 +432,7 @@ pam
 pam-base
 pam-libs
 pango
+patchelf
 pciutils
 perl
 perl-Authen-SASL
