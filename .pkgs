@@ -96,6 +96,7 @@ gettext-libs
 giflib
 gir-freedesktop
 git
+glew
 glib
 glib-networking
 glslang
@@ -387,6 +388,7 @@ linux6.12
 lua52
 lua54
 lzo
+maim
 make
 man-pages
 mbedtls
@@ -547,6 +549,7 @@ sed
 shaderc
 shadow
 shared-mime-info
+slop
 snappy
 socklog
 socklog-void
@@ -600,6 +603,7 @@ xcb-util
 xcb-util-image
 xcb-util-keysyms
 xcb-util-renderutil
+xclip
 xcolor
 xen-libs
 xf86-input-libinput
