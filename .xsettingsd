@@ -6,3 +6,5 @@ Xft/lcdfilter   "lcddefault"
 Xft/RGBA        "rgb"
 
 Gtk/CursorThemeName "capitaine-cursors-light"
+Net/ThemeName "Mojave-Dark"
+Net/IconThemeName "Os-Catalina-Night"
