@@ -9,7 +9,7 @@ alias ln='ln -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias df='df -h'
-alias dh='dh -h'
+alias du='du -h'
 
 set -o vi
 
