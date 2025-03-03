@@ -21,6 +21,7 @@ base-system
 bash
 bash-completion
 batsignal
+bcg729
 binutils
 binutils-doc
 binutils-libs
@@ -37,6 +38,7 @@ cairo
 capstone
 cdrtools
 celt
+chromaprint
 cmus
 cmus-pulseaudio
 coreutils
@@ -55,6 +57,7 @@ dmenu
 dnsmasq
 dnssec-anchors
 dosfstools
+double-conversion
 dracut
 dtc
 duktape
@@ -69,6 +72,7 @@ eudev-libudev
 expat
 expat-devel
 f2fs-tools
+faac
 fdk-aac
 feh
 ffmpeg
@@ -77,6 +81,7 @@ ffplay6
 file
 findutils
 firefox
+flite
 font-alias
 font-util
 fontconfig
@@ -108,6 +113,7 @@ grep
 grub
 grub-x86_64-efi
 gsettings-desktop-schemas
+gst-plugins-bad1
 gst-plugins-base1
 gst-plugins-good1
 gstreamer1
@@ -179,6 +185,7 @@ libaom
 libapparmor
 libarchive
 libass
+libassimp
 libasyncns
 libatomic
 libatomic-devel
@@ -187,6 +194,7 @@ libavdevice6
 libavfilter6
 libavformat6
 libavutil6
+libb2
 libb64
 libblkid
 libbluetooth
@@ -235,6 +243,7 @@ libfdisk
 libffi
 libfftw
 libflac
+libfluidsynth
 libfontenc
 libfreeaptx
 libgbm
@@ -244,16 +253,20 @@ libgcrypt
 libgirepository
 libglapi
 libglvnd
+libgme
 libgomp
 libgpg-error
 libgs
+libgsm
 libgudev
 libgusb
 libharfbuzz
 libheif
 libid3tag
 libidn2
+libilbc
 libinput
+libinstpatch
 libiscsi
 libjack
 libjbig2dec
@@ -267,11 +280,14 @@ libldap
 libldns
 liblilv
 libllvm19
+liblrdf
 libltdl
 liblz4
 liblzma
 libmad
 libmagic
+libmaxminddb
+libmd4c
 libmnl
 libmodplug
 libmount
@@ -282,10 +298,12 @@ libnetfilter_conntrack
 libnfnetlink
 libnfs
 libnftnl
+libnice
 libnl3
 libnotify
 libnuma
 libogg
+libopenal
 libopenjpeg2
 libosinfo
 libpaper
@@ -302,6 +320,8 @@ libpostproc6
 libproxy
 libpsl
 libpulseaudio
+libqt6shadertools
+libraptor
 libreadline8
 librist
 librsvg
@@ -330,6 +350,8 @@ libspa-v4l2
 libspectre
 libspeex
 libsrt
+libsrtp
+libssh
 libssh2
 libssl3
 libstdc++
@@ -363,6 +385,7 @@ libvpx
 libwacom
 libwavpack
 libwebp
+libwireshark
 libxbps
 libxcb
 libxcb-devel
@@ -376,6 +399,7 @@ libxshmfence
 libxslt
 libyaml
 libz3
+libzbar
 libzstd
 linux
 linux-base
@@ -397,6 +421,7 @@ mesa
 mesa-dri
 mesa-libgallium
 miniupnpc
+minizip
 mit-krb5-libs
 mkfontscale
 mpfr
@@ -413,11 +438,13 @@ ncurses-libs
 neofetch
 nettle
 nghttp2
+nghttp3
 nspr
 nss
 nvi
 ocl-icd
 oneVPL
+opencore-amr
 openjdk
 openjdk-common
 openjdk8
@@ -539,6 +566,19 @@ qemu-user-sparc32plus
 qemu-user-sparc64
 qemu-user-xtensa
 qemu-user-xtensaeb
+qt6-core
+qt6-dbus
+qt6-declarative
+qt6-gui
+qt6-multimedia
+qt6-network
+qt6-printsupport
+qt6-qt5compat
+qt6-quick3d
+qt6-quicktimeline
+qt6-sql
+qt6-svg
+qt6-widgets
 removed-packages
 run-parts
 runit
@@ -553,6 +593,8 @@ slop
 snappy
 socklog
 socklog-void
+soundtouch
+spandsp
 speexdsp
 spice
 spice-gtk
@@ -567,6 +609,7 @@ tlp
 tmux
 traceroute
 transmission
+tslib
 turnstile
 twolame
 tzdata
@@ -592,6 +635,8 @@ wget
 which
 wifi-firmware
 wireplumber
+wireshark
+wireshark-qt
 wpa_supplicant
 x264
 x265
@@ -600,9 +645,11 @@ xautolock
 xbps
 xbps-triggers
 xcb-util
+xcb-util-cursor
 xcb-util-image
 xcb-util-keysyms
 xcb-util-renderutil
+xcb-util-wm
 xclip
 xcolor
 xen-libs
