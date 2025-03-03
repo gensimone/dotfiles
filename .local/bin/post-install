@@ -97,7 +97,7 @@ sudo usermod -aG socklog,libvirt $USER
 #
 mkdir $HOME/Documents $HOME/Downloads $HOME/Music
 mkdir $HOME/Sources   $HOME/Venv      $HOME/Video
-mkdir $HOME/Pictures
+mkdir -p $HOME/Pictures/Screenshots
 
 
 # Suckless tools
