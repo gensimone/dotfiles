@@ -1,3 +1,6 @@
+#
+# Volume
+#
 XF86AudioRaiseVolume
 	amixer sset 'Master' 10%+ && update-dwm-status-bar
 XF86AudioLowerVolume
@@ -10,9 +13,25 @@ alt + shift + d
 	amixer sset 'Master' 10%- && update-dwm-status-bar
 alt + shift + m
         amixer sset 'Master' 0% && update-dwm-status-bar
+
+#
+# Screenshots
+#
+alt + shift + s
+	maim -s ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
+alt + shift + p
+	maim ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
+
+#
+# Brightness
+#
 XF86MonBrightnessUp
 	brightnessctl set 10%+ && update-dwm-status-bar
 XF86MonBrightnessDown
 	brightnessctl set 10%- && update-dwm-status-bar
+
+#
+# Screen lock
+#
 alt + Escape
 	slock
