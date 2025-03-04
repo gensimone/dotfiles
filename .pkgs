@@ -1,6 +1,5 @@
 SDL2
 SDL2_image
-Thunar
 aalib
 acl
 acpid
@@ -46,6 +45,7 @@ coreutils
 cpio
 dash
 dbus
+dbus-glib
 dbus-libs
 dbus-x11
 dconf
@@ -70,7 +70,6 @@ elfutils
 ethtool
 eudev
 eudev-libudev
-exo
 expat
 expat-devel
 f2fs-tools
@@ -123,7 +122,6 @@ gst-plugins-base1
 gst-plugins-good1
 gstreamer1
 gtk+3
-gtk-layer-shell
 gtk-update-icon-cache
 gtk-vnc
 gtk4
@@ -260,6 +258,9 @@ libffi
 libfftw
 libflac
 libfluidsynth
+libfm
+libfm-extra
+libfm-gtk+3
 libfontenc
 libfreeaptx
 libgbm
@@ -414,7 +415,6 @@ libxbps
 libxcb
 libxcb-devel
 libxcvt
-libxfce4panel
 libxfce4ui
 libxfce4util
 libxkbcommon
@@ -438,12 +438,14 @@ linux-firmware-nvidia
 linux6.12
 lua52
 lua54
+lxmenu-data
 lzo
 maim
 make
 man-pages
 mbedtls
 mdocml
+menu-cache
 mesa
 mesa-dri
 mesa-libgallium
@@ -491,6 +493,7 @@ pam-libs
 pango
 patchelf
 pciutils
+pcmanfm
 perl
 perl-Authen-SASL
 perl-Convert-BinHex
@@ -634,7 +637,6 @@ sudo
 sxhkd
 taglib
 tar
-thunar-volman
 tiff
 tlp
 tmux
