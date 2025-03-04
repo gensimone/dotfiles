@@ -7,4 +7,4 @@ sxhkd -c $HOME/.sxhkdrc &
 feh --bg-fill $HOME/.wallpapers/void-linux-wallpaper.png
 dwm-status-bar-update-daemon &
 xsettingsd &
-exec dwm
+exec dbus-run-session dwm
