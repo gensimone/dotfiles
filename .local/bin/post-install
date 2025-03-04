@@ -90,7 +90,7 @@ sudo ln -sv /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.
 #	you have the polkit and dbus packages installed and you enable the dbus service, libvirtd 
 #	will grant necessary privileges to any user added to the libvirt group.
 #
-sudo usermod -aG socklog,libvirt $USER
+sudo usermod -aG socklog,libvirt,storage $USER
 
 
 # Home directories
@@ -139,6 +139,37 @@ GRUB_DISTRIBUTOR=\"Void\"
 GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3\"
 GRUB_BACKGROUND=/usr/share/void-artwork/splash.png" | sudo tee /etc/default/grub >/dev/null
 sudo update-grub
+
+
+# PolicyKit rules
+#
+echo "polkit.addRule(function(action, subject) {
+  var YES = polkit.Result.YES;
+  var permission = {
+    // required for udisks1:
+    // \"org.freedesktop.udisks.filesystem-mount\": YES,
+    // \"org.freedesktop.udisks.luks-unlock\": YES,
+    // \"org.freedesktop.udisks.drive-eject\": YES,
+    // \"org.freedesktop.udisks.drive-detach\": YES,
+
+    // required for udisks2:
+    \"org.freedesktop.udisks2.filesystem-mount\": YES,
+    \"org.freedesktop.udisks2.encrypted-unlock\": YES,
+    \"org.freedesktop.udisks2.eject-media\": YES,
+    \"org.freedesktop.udisks2.power-off-drive\": YES,
+
+    // required for udisks2 if using udiskie from another seat (e.g. systemd):
+    // \"org.freedesktop.udisks2.filesystem-mount-other-seat\": YES,
+    // \"org.freedesktop.udisks2.filesystem-unmount-others\": YES,
+    // \"org.freedesktop.udisks2.encrypted-unlock-other-seat\": YES,
+    // \"org.freedesktop.udisks2.encrypted-unlock-system\": YES,
+    // \"org.freedesktop.udisks2.eject-media-other-seat\": YES,
+    // \"org.freedesktop.udisks2.power-off-drive-other-seat\": YES
+  };
+  if (subject.isInGroup(\"storage\")) {
+    return permission[action.id];
+  }
+});" | sudo tee /etc/polkit-1/rules.d/50-udiskie.rules >/dev/null
 
 
 # WidevineCdm crash Fix (https://info.tweetor.org/public/musl-firefox.html) [musl only]
