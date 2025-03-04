@@ -26,6 +26,7 @@ binutils
 binutils-doc
 binutils-libs
 bluez
+breeze-icons
 brightnessctl
 brotli
 brotli-devel
@@ -509,6 +510,7 @@ pinentry
 pipewire
 pixman
 pkg-config
+plata-theme
 polkit
 popt
 procps-ng
