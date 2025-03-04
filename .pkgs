@@ -276,7 +276,6 @@ libgpg-error
 libgpgme
 libgs
 libgsm
-libgtop
 libgudev
 libgusb
 libharfbuzz
@@ -415,8 +414,6 @@ libxbps
 libxcb
 libxcb-devel
 libxcvt
-libxfce4ui
-libxfce4util
 libxkbcommon
 libxkbcommon-x11
 libxkbfile
@@ -632,7 +629,6 @@ spice
 spice-gtk
 sqlite
 sratom
-startup-notification
 sudo
 sxhkd
 taglib
@@ -689,7 +685,6 @@ xclip
 xcolor
 xen-libs
 xf86-input-libinput
-xfconf
 xfsprogs
 xinit
 xkbcomp
