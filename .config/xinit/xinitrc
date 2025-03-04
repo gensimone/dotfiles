@@ -4,8 +4,8 @@ dunst &
 pidof batsignal >/dev/null || batsignal -b -m 3 -e
 xautolock -time 5 -locker slock -corners 000- &
 sxhkd &
-feh --bg-fill $HOME/.wallpapers/void-linux-wallpaper.png
 dwm-status-bar-update-daemon &
 xsettingsd &
+[ -f "$HOME/.fehbg" ] && "$HOME/.fehbg" || feh --bg-scale $HOME/Pictures/Wallpapers/default.png
 pcmanfm -d &
 exec dbus-run-session dwm
