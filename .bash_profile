@@ -6,4 +6,4 @@
 
 export MOZ_DISABLE_GMP_SANDBOX=1
 
-exec startx
+[ -z $DISPLAY ] && exec startx
