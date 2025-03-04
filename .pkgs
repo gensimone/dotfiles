@@ -50,7 +50,6 @@ dbus-glib
 dbus-libs
 dbus-x11
 dconf
-dejavu-fonts-ttf
 desktop-file-utils
 device-mapper
 dhcpcd
@@ -84,8 +83,6 @@ file
 findutils
 firefox
 flite
-font-alias
-font-util
 fontconfig
 fontconfig-devel
 freetype
@@ -450,7 +447,6 @@ mesa-libgallium
 miniupnpc
 minizip
 mit-krb5-libs
-mkfontscale
 mpfr
 mpv
 mtdev
