@@ -22,4 +22,7 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 
 export MOZ_DISABLE_GMP_SANDBOX=1
 
+export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+export XINITRC="$XDG_CONFIG_HOME/xinit/xinitrc"
+
 [ -z $DISPLAY ] && exec startx
