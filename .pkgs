@@ -1,5 +1,6 @@
 SDL2
 SDL2_image
+Thunar
 aalib
 acl
 acpid
@@ -69,6 +70,7 @@ elfutils
 ethtool
 eudev
 eudev-libudev
+exo
 expat
 expat-devel
 f2fs-tools
@@ -90,9 +92,11 @@ freetype
 freetype-devel
 fribidi
 fuse
+fuse3
 gawk
 gcc
 gcompat
+gcr4
 gdb
 gdb-common
 gdbm
@@ -106,6 +110,7 @@ glib
 glib-networking
 glslang
 gmp
+gnupg
 gnutls
 graphene
 graphite
@@ -118,9 +123,12 @@ gst-plugins-base1
 gst-plugins-good1
 gstreamer1
 gtk+3
+gtk-layer-shell
 gtk-update-icon-cache
 gtk-vnc
+gtk4
 gtksourceview4
+gvfs
 gzip
 hdparm
 hicolor-icon-theme
@@ -140,6 +148,7 @@ iw
 iwd
 jansson
 jbigkit-libs
+json-c
 json-glib
 kbd
 kernel-libc-headers
@@ -186,7 +195,9 @@ libapparmor
 libarchive
 libass
 libassimp
+libassuan
 libasyncns
+libatasmart
 libatomic
 libatomic-devel
 libavcodec6
@@ -197,10 +208,12 @@ libavutil6
 libb2
 libb64
 libblkid
+libblockdev
 libbluetooth
 libbluray
 libbpf
 libbs2b
+libbytesize
 libcaca
 libcacard
 libcamera
@@ -213,13 +226,16 @@ libcddb
 libcdio
 libcdio-paranoia
 libcdparanoia
+libcloudproviders
 libcolord
 libconfig
 libcrypto3
+libcryptsetup
 libcups
 libcurl
 libdatrie
 libdav1d
+libdaxctl
 libdb
 libde265
 libdebuginfod
@@ -256,8 +272,10 @@ libglvnd
 libgme
 libgomp
 libgpg-error
+libgpgme
 libgs
 libgsm
+libgtop
 libgudev
 libgusb
 libharfbuzz
@@ -273,7 +291,9 @@ libjbig2dec
 libjpeg-turbo
 libjpeg-turbo-tools
 libjxl
+libkeyutils
 libkmod
+libksba
 liblastlog2
 liblc3
 libldap
@@ -294,6 +314,7 @@ libmount
 libmpg123
 libmysofa
 libnatpmp
+libndctl
 libnetfilter_conntrack
 libnfnetlink
 libnfs
@@ -302,6 +323,7 @@ libnice
 libnl3
 libnotify
 libnuma
+libnvme
 libogg
 libopenal
 libopenjpeg2
@@ -330,6 +352,7 @@ librubberband
 libsamplerate
 libsasl
 libseccomp
+libsecret
 libsensors
 libserd
 libsharpyuv
@@ -363,6 +386,7 @@ libtasn1
 libtdb
 libthai
 libtheora
+libtinysparql
 libtirpc
 libucontext
 libunbound
@@ -390,6 +414,9 @@ libxbps
 libxcb
 libxcb-devel
 libxcvt
+libxfce4panel
+libxfce4ui
+libxfce4util
 libxkbcommon
 libxkbcommon-x11
 libxkbfile
@@ -439,6 +466,7 @@ neofetch
 nettle
 nghttp2
 nghttp3
+npth
 nspr
 nss
 nvi
@@ -477,6 +505,7 @@ perl-TimeDate
 perl-URI
 phodav
 picom
+pinentry
 pipewire
 pixman
 pkg-config
@@ -600,10 +629,12 @@ spice
 spice-gtk
 sqlite
 sratom
+startup-notification
 sudo
 sxhkd
 taglib
 tar
+thunar-volman
 tiff
 tlp
 tmux
@@ -614,6 +645,7 @@ turnstile
 twolame
 tzdata
 uchardet
+udisks2
 unzip
 usbredir
 usbutils
@@ -627,6 +659,7 @@ virt-manager
 virt-manager-tools
 vmaf
 void-artwork
+volume_key
 vte3
 vulkan-loader
 wayland
@@ -654,6 +687,7 @@ xclip
 xcolor
 xen-libs
 xf86-input-libinput
+xfconf
 xfsprogs
 xinit
 xkbcomp
