@@ -10,6 +10,7 @@ alsa-firmware
 alsa-lib
 alsa-pipewire
 alsa-utils
+apvlv
 at-spi2-atk
 at-spi2-core
 atk
@@ -31,6 +32,7 @@ brightnessctl
 brotli
 brotli-devel
 btrfs-progs
+bubblewrap
 bzip2
 bzip2-devel
 c-ares
@@ -65,8 +67,10 @@ duktape
 dunst
 e2fsprogs
 e2fsprogs-libs
+ebook-tools
 efibootmgr
 elfutils
+enchant2
 ethtool
 eudev
 eudev-libudev
@@ -109,6 +113,7 @@ glslang
 gmp
 gnupg
 gnutls
+gpgmepp
 graphene
 graphite
 grep
@@ -130,6 +135,8 @@ hdparm
 hicolor-icon-theme
 highway
 hwids
+hyphen
+hyphen-en
 iana-etc
 icu-libs
 imlib2
@@ -189,6 +196,7 @@ libaio
 libaom
 libapparmor
 libarchive
+libaspell
 libass
 libassimp
 libassuan
@@ -200,6 +208,7 @@ libavcodec6
 libavdevice6
 libavfilter6
 libavformat6
+libavif
 libavutil6
 libb2
 libb64
@@ -238,6 +247,7 @@ libdebuginfod
 libdecor
 libdeflate
 libdiscid
+libdjvulibre
 libdrm
 libdvdcss
 libdvdnav
@@ -278,6 +288,7 @@ libgudev
 libgusb
 libharfbuzz
 libheif
+libhunspell1.7
 libid3tag
 libidn2
 libilbc
@@ -304,6 +315,7 @@ liblz4
 liblzma
 libmad
 libmagic
+libmanette
 libmaxminddb
 libmd4c
 libmnl
@@ -321,6 +333,7 @@ libnice
 libnl3
 libnotify
 libnuma
+libnuspell
 libnvme
 libogg
 libopenal
@@ -336,6 +349,7 @@ libpipewire
 libplacebo
 libpng
 libpng-devel
+libpoppler
 libpostproc6
 libproxy
 libpsl
@@ -402,12 +416,16 @@ libvidstab
 libvirt
 libvirt-glib
 libvirt-python3
+libvoikko
 libvorbis
 libvpx
 libwacom
 libwavpack
+libwebkit2gtk41
 libwebp
 libwireshark
+libwoff2common1.0.2
+libwoff2dec1.0.2
 libxbps
 libxcb
 libxcb-devel
@@ -422,6 +440,7 @@ libxslt
 libyaml
 libz3
 libzbar
+libzip
 libzstd
 linux
 linux-base
@@ -508,6 +527,8 @@ pixman
 pkg-config
 plata-theme
 polkit
+poppler-data
+poppler-glib
 popt
 procps-ng
 public-suffix
@@ -606,6 +627,7 @@ qt6-quicktimeline
 qt6-sql
 qt6-svg
 qt6-widgets
+rav1e
 removed-packages
 run-parts
 runit
@@ -681,6 +703,7 @@ xcb-util-renderutil
 xcb-util-wm
 xclip
 xcolor
+xdg-dbus-proxy
 xen-libs
 xf86-input-libinput
 xfsprogs
