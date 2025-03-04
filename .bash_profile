@@ -25,4 +25,7 @@ export MOZ_DISABLE_GMP_SANDBOX=1
 export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 export XINITRC="$XDG_CONFIG_HOME/xinit/xinitrc"
 
+# run less in a secure mode
+export LESSSECURE=1
+
 [ -z $DISPLAY ] && exec startx
