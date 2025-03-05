@@ -10,4 +10,4 @@ BAT_CAPACITY="$(cat "/sys/class/power_supply/$BAT/capacity")%"
 BAT_STATUS="($(cat "/sys/class/power_supply/$BAT/status"))"
 DATE="$(date +"%b %d %A %H:%M")"
 
-xsetroot -name "$DIV   $BRIGHTNESS $DIV   $VOLUME $DIV  $BAT_CAPACITY $BAT_STATUS $DIV   $DATE"
+xsetroot -name "$DIV Vol: $VOLUME $DIV Bat: $BAT_CAPACITY $BAT_STATUS $DIV $DATE"
