@@ -109,8 +109,8 @@ git clone https://git.suckless.org/slock $HOME/Sources/slock
 #
 # Patch
 #
-git -C $HOME/Sources/dwm   apply $HOME/.suckless-patches/dwm-v1.diff
-git -C $HOME/Sources/slock apply $HOME/.suckless-patches/slock-v1.diff
+git -C $HOME/Sources/dwm   apply $HOME/.suckless-patches/dwm-*
+git -C $HOME/Sources/slock apply $HOME/.suckless-patches/slock-*
 #
 # Compile
 sudo make clean install -C $HOME/Sources/dwm
