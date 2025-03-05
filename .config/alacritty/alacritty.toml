@@ -9,7 +9,7 @@ bold_italic = { family = "CaskaydiaCove NF", style = "Bold Italic"  }
 size = 11
 
 [cursor]
-style = { shape = "UnderLine", blinking = "On" }
+style = { shape = "Block", blinking = "On" }
 
 [mouse]
 hide_when_typing = true
