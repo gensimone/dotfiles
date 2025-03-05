@@ -71,6 +71,8 @@ e2fsprogs-libs
 ebook-tools
 efibootmgr
 elfutils
+emacs
+emacs-common
 enchant2
 ethtool
 eudev
@@ -79,6 +81,7 @@ expat
 expat-devel
 f2fs-tools
 faac
+fd
 fdk-aac
 feh
 ffmpeg
@@ -88,6 +91,8 @@ file
 findutils
 firefox
 flite
+font-alias
+font-util
 fontconfig
 fontconfig-devel
 freetype
@@ -467,6 +472,7 @@ mesa-libgallium
 miniupnpc
 minizip
 mit-krb5-libs
+mkfontscale
 mpfr
 mpv
 mtdev
@@ -479,6 +485,7 @@ ncurses
 ncurses-base
 ncurses-libs
 neofetch
+nerd-fonts-symbols-ttf
 nettle
 nghttp2
 nghttp3
@@ -630,6 +637,7 @@ qt6-svg
 qt6-widgets
 rav1e
 removed-packages
+ripgrep
 run-parts
 runit
 runit-void
@@ -639,6 +647,7 @@ sed
 shaderc
 shadow
 shared-mime-info
+shellcheck
 slop
 snappy
 socklog
@@ -660,6 +669,7 @@ tlp
 tmux
 traceroute
 transmission
+tree-sitter
 tslib
 turnstile
 twolame
