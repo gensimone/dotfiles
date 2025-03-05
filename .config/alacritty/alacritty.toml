@@ -2,9 +2,11 @@
 opacity = 0.5
 
 [font]
-normal = { family = "Ubuntu Mono Nerd Font", style = "regular"  }
-bold = { family = "Ubuntu Mono Nerd Font", style = "bold"  }
-size = 12
+normal = { family = "CaskaydiaCove NF", style = "Regular"  }
+bold = { family = "CaskaydiaCove NF", style = "Bold"  }
+italic = { family = "CaskaydiaCove NF", style = "Italic"  }
+bold_italic = { family = "CaskaydiaCove NF", style = "Bold Italic"  }
+size = 11
 
 [cursor]
 style = { shape = "UnderLine", blinking = "On" }
