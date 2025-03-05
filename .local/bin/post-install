@@ -172,4 +172,10 @@ echo "polkit.addRule(function(action, subject) {
 });" | sudo tee /etc/polkit-1/rules.d/50-udiskie.rules >/dev/null
 
 
+# Doom Emacs (https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install)
+#
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+[ $? -eq 0 ] && ~/.config/emacs/bin/doom install
+
+
 # WidevineCdm crash Fix (https://info.tweetor.org/public/musl-firefox.html) [musl only]
