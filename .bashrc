@@ -19,4 +19,4 @@ yt-download() {
   deactivate
 }
 
-export PS1="[\u \w]\$ "
+eval "$(starship init bash)"
