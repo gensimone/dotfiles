@@ -18,9 +18,9 @@ alt + shift + m
 # Screenshots
 #
 alt + shift + s
-	maim -s ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
+	maim --hidecursor -s ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
 alt + shift + p
-	maim ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
+	maim --hidecursor ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
 
 #
 # Brightness
