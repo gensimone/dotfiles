@@ -1,12 +1,19 @@
 #!/bin/bash
 
 
-BAT=BAT1
 DIV="|"
 
 VOLUME="$(amixer sget 'Master' | tail -n 1 | cut -d ' ' -f 7 | sed 's/[[]/''/g; s/[]]/''/g')"
-BAT_CAPACITY="$(cat "/sys/class/power_supply/$BAT/capacity")%"
-BAT_STATUS="($(cat "/sys/class/power_supply/$BAT/status"))"
 DATE="$(date +"%b %d %A %H:%M")"
 
-xsetroot -name "$DIV Vol: $VOLUME $DIV Bat: $BAT_CAPACITY $BAT_STATUS $DIV $DATE"
+STATUS_BAR="$DIV Vol: $VOLUME $DIV $DATE"
+
+# This assumes there is only one battery.
+BAT="$(ls /sys/class/power_supply | grep BAT)"
+if [ "$BAT" ]; then
+    BAT_CAPACITY="$(cat "/sys/class/power_supply/$BAT/capacity")%"
+    BAT_STATUS="($(cat "/sys/class/power_supply/$BAT/status"))"
+    STATUS_BAR="$DIV Bat: $BAT_CAPACITY $BAT_STATUS $STATUS_BAR"
+fi
+
+xsetroot -name "$STATUS_BAR"
