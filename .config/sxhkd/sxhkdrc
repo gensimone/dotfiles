@@ -7,19 +7,19 @@ XF86AudioLowerVolume
 	amixer sset 'Master' 10%- && update-dwm-status-bar
 XF86AudioMute
         amixer sset 'Master' 0% && update-dwm-status-bar
-alt + shift + i
+alt + ctrl + i
 	amixer sset 'Master' 10%+ && update-dwm-status-bar
-alt + shift + d
+alt + ctrl + d
 	amixer sset 'Master' 10%- && update-dwm-status-bar
-alt + shift + m
+alt + ctrl + m
         amixer sset 'Master' 0% && update-dwm-status-bar
 
 #
 # Screenshots
 #
-alt + shift + s
+alt + ctrl + s
 	maim --hidecursor -s ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
-alt + shift + p
+alt + ctrl + p
 	maim --hidecursor ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
 
 #
