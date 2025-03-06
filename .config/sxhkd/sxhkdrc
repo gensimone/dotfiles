@@ -35,3 +35,10 @@ XF86MonBrightnessDown
 #
 alt + Escape
 	slock
+
+
+#
+# Emacs
+#
+alt + ctrl + e
+	alacritty --command emacs
