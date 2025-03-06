@@ -10,6 +10,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
+alias emacs="emacsclient -a '' -c"
 
 set -o vi
 
