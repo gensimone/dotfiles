@@ -176,4 +176,5 @@ echo "polkit.addRule(function(action, subject) {
 # Doom Emacs (https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install)
 #
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-[ $? -eq 0 ] && ~/.config/emacs/bin/doom install
+[ $? -eq 0 ] && $HOME/.config/emacs/bin/doom install
+$HOME/.config/emacs/bin/doom sync
