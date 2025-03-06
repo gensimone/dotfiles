@@ -1,11 +1,14 @@
+[ -z "$DBUS_SESSION_BUS_ADDRESS" ] && eval $(/usr/bin/dbus-launch --exit-with-session --sh-syntax)
+
 pipewire &
 picom -b
 dunst &
 pidof batsignal >/dev/null || batsignal -b -m 3 -e
-xautolock -time 5 -locker slock -corners 000- &
+xautolock -time 10 -locker slock -corners 000- &
 sxhkd &
 dwm-status-bar-update-daemon &
 xsettingsd &
 [ -f "$HOME/.fehbg" ] && "$HOME/.fehbg" || feh --bg-scale $HOME/Pictures/Wallpapers/default.png
 pcmanfm -d &
-exec dbus-run-session dwm
+emacs --daemon &
+exec dwm
