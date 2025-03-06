@@ -17,7 +17,10 @@ sudo ln -sv /etc/sv/tlp        /var/service
 sudo ln -sv /etc/sv/bluetoothd /var/service
 sudo ln -sv /etc/sv/dhcpcd     /var/service
 sudo ln -sv /etc/sv/iwd        /var/service
-
+#
+# Logging (https://docs.voidlinux.org/config/services/logging.html)
+#
+sudo ln -sv /etc/sv/socklog-unix /var/service
 #
 # Session and Seat Management (https://docs.voidlinux.org/config/session-management.html)
 #
