@@ -102,7 +102,6 @@ fuse
 fuse3
 gawk
 gcc
-gcompat
 gcr4
 gdb
 gdb-common
@@ -115,6 +114,9 @@ git
 glew
 glib
 glib-networking
+glibc
+glibc-devel
+glibc-locales
 glslang
 gmp
 gnupg
@@ -406,7 +408,6 @@ libthai
 libtheora
 libtinysparql
 libtirpc
-libucontext
 libunbound
 libunistring
 liburcu
@@ -435,6 +436,9 @@ libwoff2dec1.0.2
 libxbps
 libxcb
 libxcb-devel
+libxcrypt
+libxcrypt-compat
+libxcrypt-devel
 libxcvt
 libxkbcommon
 libxkbcommon-x11
@@ -477,10 +481,6 @@ mpfr
 mpv
 mtdev
 mujs
-musl
-musl-devel
-musl-fts
-musl-obstack
 ncurses
 ncurses-base
 ncurses-libs
