@@ -17,6 +17,7 @@ sudo ln -sv /etc/sv/tlp        /var/service
 sudo ln -sv /etc/sv/bluetoothd /var/service
 sudo ln -sv /etc/sv/dhcpcd     /var/service
 sudo ln -sv /etc/sv/iwd        /var/service
+
 #
 # Session and Seat Management (https://docs.voidlinux.org/config/session-management.html)
 #
@@ -176,6 +177,3 @@ echo "polkit.addRule(function(action, subject) {
 #
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 [ $? -eq 0 ] && ~/.config/emacs/bin/doom install
-
-
-# WidevineCdm crash Fix (https://info.tweetor.org/public/musl-firefox.html) [musl only]
