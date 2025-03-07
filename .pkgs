@@ -415,6 +415,7 @@ libusb
 libutempter
 libuuid
 libuuid-devel
+libuv
 libva
 libvamp-plugin-sdk
 libvde2
@@ -489,6 +490,7 @@ nerd-fonts-symbols-ttf
 nettle
 nghttp2
 nghttp3
+nodejs
 npth
 nspr
 nss
