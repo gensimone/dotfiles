@@ -42,3 +42,11 @@ alt + Escape
 #
 alt + ctrl + e
 	alacritty --command emacs
+
+
+#
+# Pulsemixer
+# --class pulsemixer is used to float the window in dwm
+#
+alt + shift + m
+	alacritty --class pulsemixer --command pulsemixer

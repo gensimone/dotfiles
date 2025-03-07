@@ -11,6 +11,9 @@ alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
 alias emacs="emacsclient -a '' -c"
+alias xi='sudo xbps-install'
+alias xr='sudo xbps-remove -R'
+alias xu='sudo xbps-install -Su'
 
 set -o vi
 
