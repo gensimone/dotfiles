@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9efa774..5b3909c 100644
+index 9efa774..d4497d7 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,17 +1,17 @@
@@ -25,7 +25,7 @@ index 9efa774..5b3909c 100644
  static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-@@ -19,16 +19,16 @@ static const char *colors[][3]      = {
+@@ -19,16 +19,17 @@ static const char *colors[][3]      = {
  };
  
  /* tagging */
@@ -43,10 +43,11 @@ index 9efa774..5b3909c 100644
 +	/* class           instance           title                 tags mask     isfloating   monitor */
 +	{ "Firefox",       NULL,              NULL,                 1 << 3,       0,           -1 },
 +	{ "Virt-manager",  NULL,              NULL,                 1 << 4,       0,           -1 },
++	{ "pulsemixer",    NULL,              NULL,                      0,       1,           -1 },
  };
  
  /* layout(s) */
-@@ -58,12 +58,12 @@ static const Layout layouts[] = {
+@@ -58,12 +59,12 @@ static const Layout layouts[] = {
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -61,7 +62,7 @@ index 9efa774..5b3909c 100644
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-@@ -73,14 +73,15 @@ static const Key keys[] = {
+@@ -73,14 +74,15 @@ static const Key keys[] = {
  	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
  	{ MODKEY,                       XK_Return, zoom,           {0} },
  	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -80,7 +81,7 @@ index 9efa774..5b3909c 100644
  	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
  	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-@@ -94,7 +95,7 @@ static const Key keys[] = {
+@@ -94,7 +96,7 @@ static const Key keys[] = {
  	TAGKEYS(                        XK_7,                      6)
  	TAGKEYS(                        XK_8,                      7)
  	TAGKEYS(                        XK_9,                      8)
@@ -90,7 +91,7 @@ index 9efa774..5b3909c 100644
  
  /* button definitions */
 diff --git a/dwm.c b/dwm.c
-index 1443802..39279fd 100644
+index 1443802..b17f8d3 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -199,6 +199,7 @@ static void sendmon(Client *c, Monitor *m);
@@ -101,7 +102,16 @@ index 1443802..39279fd 100644
  static void setlayout(const Arg *arg);
  static void setmfact(const Arg *arg);
  static void setup(void);
-@@ -1506,6 +1507,19 @@ setfullscreen(Client *c, int fullscreen)
+@@ -1067,6 +1068,8 @@ manage(Window w, XWindowAttributes *wa)
+ 	updatewindowtype(c);
+ 	updatesizehints(c);
+ 	updatewmhints(c);
++	c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
++	c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
+ 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
+ 	grabbuttons(c, 0);
+ 	if (!c->isfloating)
+@@ -1506,6 +1509,19 @@ setfullscreen(Client *c, int fullscreen)
  	}
  }
  
