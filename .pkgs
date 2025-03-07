@@ -544,6 +544,7 @@ procps-ng
 public-suffix
 pulseaudio-utils
 pulsemixer
+pyright
 python
 python-pip
 python-setuptools
