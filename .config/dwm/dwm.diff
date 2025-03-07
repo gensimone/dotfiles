@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9efa774..d4497d7 100644
+index 9efa774..cbd4b55 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,17 +1,17 @@
@@ -25,7 +25,7 @@ index 9efa774..d4497d7 100644
  static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-@@ -19,16 +19,17 @@ static const char *colors[][3]      = {
+@@ -19,16 +19,18 @@ static const char *colors[][3]      = {
  };
  
  /* tagging */
@@ -44,10 +44,11 @@ index 9efa774..d4497d7 100644
 +	{ "Firefox",       NULL,              NULL,                 1 << 3,       0,           -1 },
 +	{ "Virt-manager",  NULL,              NULL,                 1 << 4,       0,           -1 },
 +	{ "pulsemixer",    NULL,              NULL,                      0,       1,           -1 },
++	{ "emacs",         NULL,              NULL,                 1 << 0,       0,           -1 },
  };
  
  /* layout(s) */
-@@ -58,12 +59,12 @@ static const Layout layouts[] = {
+@@ -58,12 +60,12 @@ static const Layout layouts[] = {
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -62,7 +63,7 @@ index 9efa774..d4497d7 100644
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-@@ -73,14 +74,15 @@ static const Key keys[] = {
+@@ -73,14 +75,15 @@ static const Key keys[] = {
  	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
  	{ MODKEY,                       XK_Return, zoom,           {0} },
  	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -81,7 +82,7 @@ index 9efa774..d4497d7 100644
  	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
  	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-@@ -94,7 +96,7 @@ static const Key keys[] = {
+@@ -94,7 +97,7 @@ static const Key keys[] = {
  	TAGKEYS(                        XK_7,                      6)
  	TAGKEYS(                        XK_8,                      7)
  	TAGKEYS(                        XK_9,                      8)

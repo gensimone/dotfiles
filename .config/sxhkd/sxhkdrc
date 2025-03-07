@@ -41,7 +41,7 @@ alt + Escape
 # Emacs
 #
 alt + ctrl + e
-	alacritty --command emacs
+	alacritty --class emacs --command emacs
 
 
 #
