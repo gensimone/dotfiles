@@ -40,9 +40,11 @@ c-ares
 ca-certificates
 cairo
 capstone
+ccls
 cdrtools
 celt
 chromaprint
+clang19-headers
 cmus
 cmus-pulseaudio
 coreutils
@@ -239,6 +241,7 @@ libcddb
 libcdio
 libcdio-paranoia
 libcdparanoia
+libclang-cpp19
 libcloudproviders
 libcolord
 libconfig
