@@ -1,7 +1,7 @@
 #!/bin/sh
 
 fsmon() {
-	ROOTPART=$(df -h | awk '/\/$/ { print $4}') 
+	ROOTPART=$(df -h | awk '/\/$/ { print $4 }') 
 	echo " $ROOTPART"
 }
 
