@@ -40,8 +40,8 @@ alt + Escape
 #
 # Emacs
 #
-alt + ctrl + e
-	alacritty --class emacs --command emacsclient -c -a ''
+alt + ctrl + n
+	alacritty --class nvim --command nvim
 
 
 #
