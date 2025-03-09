@@ -2,17 +2,17 @@
 # Volume
 #
 XF86AudioRaiseVolume
-	amixer sset 'Master' 10%+ && update-dwm-status-bar
+	amixer sset 'Master' 10%+
 XF86AudioLowerVolume
-	amixer sset 'Master' 10%- && update-dwm-status-bar
+	amixer sset 'Master' 10%-
 XF86AudioMute
-        amixer sset 'Master' 0% && update-dwm-status-bar
+        amixer sset 'Master' 0%
 alt + ctrl + i
-	amixer sset 'Master' 10%+ && update-dwm-status-bar
+	amixer sset 'Master' 10%+
 alt + ctrl + d
-	amixer sset 'Master' 10%- && update-dwm-status-bar
+	amixer sset 'Master' 10%-
 alt + ctrl + m
-        amixer sset 'Master' 0% && update-dwm-status-bar
+        amixer sset 'Master' 0%
 
 #
 # Screenshots
@@ -26,9 +26,9 @@ alt + ctrl + p
 # Brightness
 #
 XF86MonBrightnessUp
-	brightnessctl set 10%+ && update-dwm-status-bar
+	brightnessctl set 10%+
 XF86MonBrightnessDown
-	brightnessctl set 10%- && update-dwm-status-bar
+	brightnessctl set 10%-
 
 #
 # Screen lock
@@ -41,7 +41,7 @@ alt + Escape
 # Emacs
 #
 alt + ctrl + e
-	alacritty --class emacs --command emacs
+	alacritty --class emacs --command emacsclient -c -a ''
 
 
 #
@@ -50,3 +50,10 @@ alt + ctrl + e
 #
 alt + shift + m
 	alacritty --class pulsemixer --command pulsemixer
+
+
+#
+# Boot session [full]
+#
+alt + ctrl + b
+	boot-session-full
