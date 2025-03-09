@@ -21,7 +21,7 @@ cpu() {
 }
 
 network() {
-	conntype=$(ip route | awk '/default/ { print substr($5,1,1) }')
+	conntype=$(ip route | awk '/default/ { print substr($5,1,1) }' | head -n 1)
 
 	if [ -z "$conntype" ]; then
 		echo "󱘖 down"
@@ -89,9 +89,9 @@ battery() {
 		status="$(cat "/sys/class/power_supply/$bat/status")"
 
 		if [ $capacity -lt 10 ]; then
-			icon=$(if [ $status = "charging" ]; then echo 󰢜; else echo 󰁺; fi)
+			icon=$(if [ $status = "Charging" ]; then echo 󰢜; else echo 󰁺; fi)
 		elif [ $capacity -lt 20 ]; then
-			icon=$(if [ $status = "charging" ]; then echo 󰂆; else echo 󰁻; fi)
+			icon=$(if [ $status = "Charging" ]; then echo 󰂆; else echo 󰁻; fi)
 		elif [ $capacity -lt 30 ]; then
 			icon=$(if [ $status = "Charging" ]; then echo 󰂇; else echo 󰁼; fi)
 		elif [ $capacity -lt 40 ]; then
@@ -113,7 +113,7 @@ battery() {
 		echo "$icon $capacity%"
 
 	else
-		echo "󱉝"
+		echo "󱉝 No battery"
 	fi
 }
 
