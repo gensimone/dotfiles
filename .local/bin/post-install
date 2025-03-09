@@ -141,7 +141,7 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR=\"Void\"
 GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3\"
-GRUB_BACKGROUND=/usr/share/void-artwork/splash.png" | sudo tee /etc/default/grub >/dev/null
+#GRUB_BACKGROUND=/usr/share/void-artwork/splash.png" | sudo tee /etc/default/grub >/dev/null
 sudo update-grub
 
 
