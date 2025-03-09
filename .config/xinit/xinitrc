@@ -6,9 +6,8 @@ dunst &
 pidof batsignal >/dev/null || batsignal -b -m 3 -e
 xautolock -time 10 -locker slock -corners 000- &
 sxhkd &
-dwm-status-bar-update-daemon &
+status-bar &
 xsettingsd &
 [ -f "$HOME/.fehbg" ] && "$HOME/.fehbg" || feh --bg-scale $HOME/Pictures/Wallpapers/default.png
 pcmanfm -d &
-emacs --daemon &
 exec dwm
