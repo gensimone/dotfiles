@@ -29,4 +29,7 @@ export XINITRC="$XDG_CONFIG_HOME/xinit/xinitrc"
 # run less in a secure mode
 export LESSSECURE=1
 
+# vim as the default editor
+export EDITOR=vim
+
 [ -z $DISPLAY ] && exec startx
