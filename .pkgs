@@ -1,3 +1,4 @@
+LuaJIT
 SDL2
 SDL2_image
 aalib
@@ -40,6 +41,7 @@ c-ares
 ca-certificates
 cairo
 capstone
+cargo
 ccls
 cdrtools
 celt
@@ -49,6 +51,7 @@ cmus
 cmus-pulseaudio
 coreutils
 cpio
+curl
 dash
 dbus
 dbus-glib
@@ -73,8 +76,6 @@ e2fsprogs-libs
 ebook-tools
 efibootmgr
 elfutils
-emacs
-emacs-common
 enchant2
 ethtool
 eudev
@@ -91,7 +92,6 @@ ffmpeg6
 ffplay6
 file
 findutils
-firefox
 flite
 font-alias
 font-util
@@ -287,6 +287,7 @@ libgcc
 libgcc-devel
 libgcrypt
 libgirepository
+libgit2-1.8
 libglapi
 libglvnd
 libgme
@@ -322,6 +323,7 @@ liblilv
 libllvm19
 liblrdf
 libltdl
+libluv
 liblz4
 liblzma
 libmad
@@ -430,6 +432,7 @@ libvirt-python3
 libvoikko
 libvorbis
 libvpx
+libvterm
 libwacom
 libwavpack
 libwebkit2gtk41
@@ -464,8 +467,14 @@ linux-firmware-intel
 linux-firmware-network
 linux-firmware-nvidia
 linux6.12
+llhttp
+lua51
+lua51-lpeg
 lua52
+lua53
 lua54
+luarocks
+luarocks-lua53
 lxmenu-data
 lzo
 maim
@@ -483,12 +492,14 @@ mit-krb5-libs
 mkfontscale
 mpfr
 mpv
+msgpack
 mtdev
 mujs
 ncurses
 ncurses-base
 ncurses-libs
 neofetch
+neovim
 nerd-fonts-symbols-ttf
 nettle
 nghttp2
@@ -557,6 +568,7 @@ python3-cairo
 python3-charset-normalizer
 python3-gobject
 python3-idna
+python3-pip
 python3-requests
 python3-six
 python3-urllib3
@@ -648,6 +660,8 @@ ripgrep
 run-parts
 runit
 runit-void
+rust
+rust-std
 sbc
 seatd
 sed
@@ -676,6 +690,7 @@ tlp
 tmux
 traceroute
 transmission
+tree
 tree-sitter
 tslib
 ttf-ubuntu-font-family
@@ -684,13 +699,13 @@ twolame
 tzdata
 uchardet
 udisks2
+unibilium
 unzip
 usbredir
 usbutils
 util-linux
 util-linux-common
 v4l-utils
-vim
 vim-common
 virglrenderer
 virt-manager
