@@ -10,6 +10,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
+alias vi='nvim'
+alias vim='nvim'
 
 set -o vi
 
