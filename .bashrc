@@ -10,13 +10,12 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias df='df -h'
 alias du='du -h'
-alias emacs="emacsclient -a '' -c"
 
 set -o vi
 
 yt-download() {
-  source $HOME/Venvs/yt-dlp/bin/activate 
-  yt-dlp $@
+  source "$HOME/Venvs/yt-dlp/bin/activate"
+  yt-dlp "$@"
   deactivate
 }
 
