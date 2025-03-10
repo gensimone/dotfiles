@@ -1,9 +1,9 @@
 # .bash_profile
 
 # Get the aliases and functions
-[ -f $HOME/.bashrc ] && . $HOME/.bashrc
-[ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
-[ -d $HOME/.config/emacs/bin ] && export PATH="$HOME/.config/emacs/bin:$PATH"
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.config/emacs/bin" ] && export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # Where user-specific configurations should be written.
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -32,4 +32,4 @@ export LESSSECURE=1
 # vim as the default editor
 export EDITOR=vim
 
-[ -z $DISPLAY ] && exec startx
+[ -z "$DISPLAY" ] && exec startx
