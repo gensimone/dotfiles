@@ -32,4 +32,7 @@ export LESSSECURE=1
 # vim as the default editor
 export EDITOR=vim
 
+# set the starship config file location
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
 [ -z "$DISPLAY" ] && exec startx
