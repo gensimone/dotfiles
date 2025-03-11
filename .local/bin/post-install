@@ -176,8 +176,7 @@ echo "polkit.addRule(function(action, subject) {
 });" | sudo tee /etc/polkit-1/rules.d/50-udiskie.rules >/dev/null
 
 
-# Doom Emacs (https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install)
+# 
+# Tgpt
 #
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-[ $? -eq 0 ] && $HOME/.config/emacs/bin/doom install
-$HOME/.config/emacs/bin/doom sync
+curl -sSL https://raw.githubusercontent.com/aandrew-me/tgpt/main/install | bash -s /usr/local/bin
