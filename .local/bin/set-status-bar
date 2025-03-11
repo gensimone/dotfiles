@@ -31,7 +31,7 @@ network() {
     if [ "$conntype" = "e" ]; then
       echo "󰈀 up via $interface ($ip)"
     else
-      echo "󰖩 up ($ip)"
+      echo "󰖩 up $interface ($ip)"
     fi
 	fi
 }
@@ -91,6 +91,7 @@ battery() {
 	if [ "$bat" ]; then
 		capacity="$(cat "/sys/class/power_supply/$bat/capacity")"
 		status="$(cat "/sys/class/power_supply/$bat/status")"
+    remaining_time="$(acpi -b | cut -d ',' -f 3 | cut -d ' ' -f 2)"
 
 		if [ $capacity -lt 10 ]; then
 			icon=$(if [ $status = "Charging" ]; then echo 󰢜; else echo 󰁺; fi)
@@ -114,7 +115,7 @@ battery() {
 			icon=$(if [ $status = "Charging" ]; then echo 󰂅; else echo 󰁹; fi)
 		fi
 
-		echo "$icon $capacity%"
+    echo "$icon $capacity% ($remaining_time)"
 
 	else
 		echo "󱉝 No battery"
