@@ -26,12 +26,13 @@ network() {
 		echo "󱘖 down"
   else
     interface=$(echo "$route" | cut -d ' ' -f 5)
+    ssid="$(iw dev $interface info | grep ssid | cut -d ' ' -f 2)"
     conntype=$(echo "$interface" | awk '{ print substr($1,1,1) }')
-    ip=$(echo "$route" | cut -d ' ' -f 9)
+    # ip=$(echo "$route" | cut -d ' ' -f 9)
     if [ "$conntype" = "e" ]; then
-      echo "󰈀 up via $interface ($ip)"
+      echo "󰈀 up"
     else
-      echo "󰖩 up $interface ($ip)"
+      echo "󰖩 up [$ssid]"
     fi
 	fi
 }
@@ -91,7 +92,7 @@ battery() {
 	if [ "$bat" ]; then
 		capacity="$(cat "/sys/class/power_supply/$bat/capacity")"
 		status="$(cat "/sys/class/power_supply/$bat/status")"
-    remaining_time="$(acpi -b | cut -d ',' -f 3 | cut -d ' ' -f 2)"
+    remaining_time="$(acpi -b | cut -d ',' -f 3 | cut -c 2-)"
 
 		if [ $capacity -lt 10 ]; then
 			icon=$(if [ $status = "Charging" ]; then echo 󰢜; else echo 󰁺; fi)
@@ -115,7 +116,7 @@ battery() {
 			icon=$(if [ $status = "Charging" ]; then echo 󰂅; else echo 󰁹; fi)
 		fi
 
-    echo "$icon $capacity% ($remaining_time)"
+    echo "$icon $capacity% [$remaining_time]"
 
 	else
 		echo "󱉝 No battery"
