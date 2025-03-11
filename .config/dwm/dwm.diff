@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9efa774..e5a9a24 100644
+index 9efa774..a3b52fb 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,17 +1,17 @@
@@ -10,10 +10,9 @@ index 9efa774..e5a9a24 100644
 +static const unsigned int borderpx  = 3;        /* border pixel of windows */
  static const unsigned int snap      = 32;       /* snap pixel */
  static const int showbar            = 1;        /* 0 means no bar */
--static const int topbar             = 1;        /* 0 means bottom bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
 -static const char *fonts[]          = { "monospace:size=10" };
 -static const char dmenufont[]       = "monospace:size=10";
-+static const int topbar             = 0;        /* 0 means bottom bar */
 +static const char *fonts[]          = { "CaskaydiaCove NF:size=12" };
 +static const char dmenufont[]       = "CaskaydiaCove NF:size=11";
  static const char col_gray1[]       = "#222222";
@@ -58,9 +57,9 @@ index 9efa774..e5a9a24 100644
 -	{ "[]=",      tile },    /* first entry is default */
 -	{ "><>",      NULL },    /* no layout function means floating behavior */
 -	{ "[M]",      monocle },
-+	{ "",      tile },    /* first entry is default */
-+	{ "",      NULL },    /* no layout function means floating behavior */
-+	{ "",      monocle },
++	{ "| ",      tile },    /* first entry is default */
++	{ "| ",      NULL },    /* no layout function means floating behavior */
++	{ "| ",      monocle },
  };
  
  /* key definitions */
@@ -110,7 +109,7 @@ index 9efa774..e5a9a24 100644
  
  /* button definitions */
 diff --git a/dwm.c b/dwm.c
-index 1443802..b17f8d3 100644
+index 1443802..5214405 100644
 --- a/dwm.c
 +++ b/dwm.c
 @@ -199,6 +199,7 @@ static void sendmon(Client *c, Monitor *m);
@@ -130,13 +129,12 @@ index 1443802..b17f8d3 100644
  	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
  	grabbuttons(c, 0);
  	if (!c->isfloating)
-@@ -1506,6 +1509,19 @@ setfullscreen(Client *c, int fullscreen)
+@@ -1506,6 +1509,18 @@ setfullscreen(Client *c, int fullscreen)
  	}
  }
  
 +Layout *last_layout;
-+void
-+fullscreen(const Arg *arg)
++void fullscreen(const Arg *arg)
 +{
 +	if (selmon->showbar) {
 +		for(last_layout = (Layout *)layouts; last_layout != selmon->lt[selmon->sellt]; last_layout++);
