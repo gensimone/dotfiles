@@ -21,14 +21,17 @@ cpu() {
 }
 
 network() {
-	conntype=$(ip route | awk '/default/ { print substr($5,1,1) }' | head -n 1)
-
-	if [ -z "$conntype" ]; then
+	route=$(ip route | awk '/default/' | head -n 1)
+	if [ -z "$route" ]; then
 		echo "󱘖 down"
-	elif [ "$conntype" = "e" ]; then
-		echo "󰈀 up"
-	elif [ "$conntype" = "w" ]; then
-		echo "󰖩 up"
+  else
+    conntype=$(echo "route" | cut -d ' ' -f 5)
+    ip=$(echo "$route" | cut -d ' ' -f 9)
+    if [ "$conntype" = "e" ]; then
+      echo "󰈀 up ($ip)"
+    else
+      echo "󰖩 up ($ip)"
+    fi
 	fi
 }
 
