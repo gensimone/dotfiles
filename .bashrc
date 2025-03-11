@@ -12,6 +12,7 @@ alias df='df -h'
 alias du='du -h'
 alias vi='nvim'
 alias vim='nvim'
+alias gpt='tgpt -m'
 
 set -o vi
 
