@@ -84,6 +84,7 @@ expat
 expat-devel
 f2fs-tools
 faac
+fastfetch
 fd
 fdk-aac
 feh
@@ -498,7 +499,6 @@ mujs
 ncurses
 ncurses-base
 ncurses-libs
-neofetch
 neovim
 nerd-fonts-symbols-ttf
 nettle
@@ -760,6 +760,7 @@ xvidcore
 xxd
 xz
 yajl
+yyjson
 zd1211-firmware
 zix
 zlib
