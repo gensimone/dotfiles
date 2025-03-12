@@ -28,7 +28,7 @@ cpu() {
 bluetooth() {
   if [ "$(which bluetoothctl)" ]; then
     connected="$(bluetoothctl devices Connected)"
-    if [ "$connected" = "No default controller available" ]; then
+    if [ "$connected" = "No default controller available" ] || ! [ "$connected" ]; then
       echo ""
     else
       connected="$(echo "$connected" | head -1 | cut -d ' ' -f 3)"
@@ -48,7 +48,7 @@ network() {
     conntype=$(echo "$interface" | awk '{ print substr($1,1,1) }')
     ip=$(echo "$route" | cut -d ' ' -f 9)
     if [ "$conntype" = "e" ]; then
-      echo "󰈀 $ip"
+      echo "󰈀  [$ip]"
     else
       echo "󰖩  [$ip] [$ssid]"
     fi
