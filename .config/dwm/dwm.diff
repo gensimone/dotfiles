@@ -1,8 +1,8 @@
 diff --git a/config.def.h b/config.def.h
-index 9efa774..18f8cec 100644
+index 9efa774..4b44f75 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -1,17 +1,18 @@
+@@ -1,47 +1,53 @@
  /* See LICENSE file for copyright and license details. */
  
  /* appearance */
@@ -14,18 +14,23 @@ index 9efa774..18f8cec 100644
  static const int topbar             = 1;        /* 0 means bottom bar */
 -static const char *fonts[]          = { "monospace:size=10" };
 -static const char dmenufont[]       = "monospace:size=10";
+-static const char col_gray1[]       = "#222222";
+-static const char col_gray2[]       = "#444444";
+-static const char col_gray3[]       = "#bbbbbb";
+-static const char col_gray4[]       = "#eeeeee";
+-static const char col_cyan[]        = "#005577";
 +static const char *fonts[]          = { "Terminess Nerd Font:size=13.5" };
 +static const char dmenufont[]       = "Terminess Nerd Font:size=13.5";
- static const char col_gray1[]       = "#222222";
- static const char col_gray2[]       = "#444444";
- static const char col_gray3[]       = "#bbbbbb";
- static const char col_gray4[]       = "#eeeeee";
--static const char col_cyan[]        = "#005577";
-+static const char col_cyan[]        = "#50565b";
++static const char col_gray1[]       = "#181616"; /* norm bg */
++static const char col_gray2[]       = "#181616"; /* norm border */
++static const char col_gray3[]       = "#c5c9c5"; /* norm fg */
++static const char col_gray4[]       = "#98be65"; /* sel fg */
++static const char col_cyan[]        = "#181616"; /* sel bg, border */
  static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-@@ -19,29 +20,34 @@ static const char *colors[][3]      = {
+-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
++	[SchemeSel]  = { col_gray4, col_cyan,  col_gray4 },
  };
  
  /* tagging */
