@@ -88,13 +88,20 @@ send-message() {
   fi
 }
 
+trap-function() {
+  echo
+  send-message "Study interrupted at session $session"
+  exit
+}
+
 main() {
+  trap trap-function 2 15
+
   parse_options "$@"
 
   send-message "Study time: $study_time min"
   send-message "Break time: $break_time min"
 
-  trap 'echo; send-message "Study interrupted at session $session"; exit' 2
   while true; do
 
     send-message "Session $session started"
