@@ -36,13 +36,13 @@ sudo ln -sv /etc/sv/virtlockd  /var/service
 
 # IWD https://docs.voidlinux.org/config/network/iwd.html
 #
-# By default, IWD will create and destroy the wireless interfaces (e.g. wlan0) that it manages. 
-# This can interfere with udevd, which may attempt to rename the interface using its rules for 
-# persistent network interface names. A simple fix is to prevent IWD from manipulating the network 
-# interfaces in this way by adding UseDefaultInterface=true to the [General] section of 
-# /etc/iwd/main.conf. An alternative approach is to disable the use of persistent network interface 
-# names by udevd. This may be accomplished either by adding net.ifnames=0 to your kernel cmdline or 
-# by creating a symbolic link to /dev/null at /etc/udev/rules.d/80-net-name-slot.rules to mask the 
+# By default, IWD will create and destroy the wireless interfaces (e.g. wlan0) that it manages.
+# This can interfere with udevd, which may attempt to rename the interface using its rules for
+# persistent network interface names. A simple fix is to prevent IWD from manipulating the network
+# interfaces in this way by adding UseDefaultInterface=true to the [General] section of
+# /etc/iwd/main.conf. An alternative approach is to disable the use of persistent network interface
+# names by udevd. This may be accomplished either by adding net.ifnames=0 to your kernel cmdline or
+# by creating a symbolic link to /dev/null at /etc/udev/rules.d/80-net-name-slot.rules to mask the
 # renaming rule. This alternative approach will affect the naming of all network devices
 #
 echo "[General]
@@ -82,16 +82,16 @@ sudo ln -sv /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.
 
 
 # Groups (https://docs.voidlinux.org/config/users-and-groups.html)
-# 
+#
 # default groups: $USER wheel floppy audio video cdrom optical kvm users xbuilder
 #
 # Extra groups:
-# - socklog 
+# - socklog
 # 	the ability to read logs is limited to root and users who are part of the socklog group.
 # - libvirt
-# 	Most virsh commands require root privileges to run due to the communications channels 
-#	used to talk to the hypervisor. Running as non root will return an error. However, if 
-#	you have the polkit and dbus packages installed and you enable the dbus service, libvirtd 
+# 	Most virsh commands require root privileges to run due to the communications channels
+#	used to talk to the hypervisor. Running as non root will return an error. However, if
+#	you have the polkit and dbus packages installed and you enable the dbus service, libvirtd
 #	will grant necessary privileges to any user added to the libvirt group.
 #
 sudo usermod -aG socklog,libvirt,storage $USER
@@ -176,7 +176,14 @@ echo "polkit.addRule(function(action, subject) {
 });" | sudo tee /etc/polkit-1/rules.d/50-udiskie.rules >/dev/null
 
 
-# 
+#
 # Tgpt
 #
 curl -sSL https://raw.githubusercontent.com/aandrew-me/tgpt/main/install | bash -s /usr/local/bin
+
+
+#
+# Tmux plugins
+#
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &&
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
