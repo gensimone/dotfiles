@@ -23,7 +23,7 @@ Options:
     Enable/Disable notification (default: true)
  -h/--help
     Show this message
- 
+
 Example usage:
  study --study-time 40 --break-time 15
  study -s 60 -b 20
@@ -90,7 +90,7 @@ send-message() {
 
 trap-function() {
   echo
-  send-message "Study interrupted at session $session"
+  send-message "Study endend at $(date +%H:%M:%S) session $session"
   exit
 }
 
@@ -101,6 +101,7 @@ main() {
 
   send-message "Study time: $study_time min"
   send-message "Break time: $break_time min"
+  send-message "Start time: $(date +%H:%M:%S)"
 
   while true; do
 
