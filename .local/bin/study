@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+# Author: Simone Gentili (gensimone)
+#
+
+study_time=50
+break_time=10
+session=1
+notify="true"
+
+usage() {
+  cat <<EOF
+Usage: study [OPTIONS]
+
+Options:
+ -s--study-time
+    Set study time in minutes (default: 50)
+ -b/--break-time
+    Set break time in minutes (default: 10)
+ -i/--session
+    Set the session number (default: 1)
+ -n/--notify
+    Enable/Disable notification (default: true)
+ -h/--help
+    Show this message
+ 
+Example usage:
+ study --study-time 40 --break-time 15
+ study -s 60 -b 20
+ study --notify false -i 2
+ study # Use default values.
+EOF
+}
+
+parse_options() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -s|--study-time)
+        check_integer "$2" "$1"
+        study_time="$2"
+        shift 2
+        ;;
+      -b|--break-time)
+        check_integer "$2" "$1"
+        break_time="$2"
+        shift 2
+        ;;
+      -n|--notify)
+        check_bool "$2" "$1"
+        notify="$2"
+        shift 2
+        ;;
+      -i|--session)
+        check_integer "$2" "$1"
+        session="$2"
+        shift 2
+        ;;
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      *)
+        echo "Unknown option: $1"
+          exit 1
+          ;;
+    esac
+  done
+}
+
+check_bool() {
+  if ! [[ "$1" =~ ^(true|false)$ ]]; then
+    echo "Option $2 takes a boolean."
+    exit 1
+  fi
+}
+
+check_integer() {
+  if ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "Option $2 takes a positive integer."
+    exit 1
+  fi
+}
+
+send-message() {
+  echo "$1"
+  if [ "$notify" = "true" ]; then
+    notify-send "$1"
+  fi
+}
+
+main() {
+  parse_options "$@"
+
+  send-message "Study time: $study_time min"
+  send-message "Break time: $break_time min"
+
+  trap 'echo; send-message "Study interrupted at session $session"; exit' 2
+  while true; do
+
+    send-message "Session $session started"
+    sleep "$((study_time*60))"
+    send-message "Session $session completed"
+
+    session="$((session+1))"
+
+    send-message "Break started ($break_time min)"
+    sleep "$((break_time*60))"
+    send-message "Break over"
+
+  done
+}
+
+main "$@"
