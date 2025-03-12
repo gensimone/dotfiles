@@ -11,7 +11,7 @@ ram() {
 }
 
 temperature() {
-  temp=" $(acpi -t | cut -d ' ' -f 4)"
+  temp=" $(acpi -t | head -1 | cut -d ' ' -f 4)"
   echo "$temp"
 }
 
@@ -27,8 +27,11 @@ cpu() {
 
 bluetooth() {
   if [ "$(which bluetoothctl)" ]; then
-    connected="$(bluetoothctl devices Connected | head -1 | cut -d ' ' -f 3)"
-    if [ "$connected" ]; then
+    connected="$(bluetoothctl devices Connected)"
+    if [ "$connected" = "No default controller available" ]; then
+      echo ""
+    else
+      connected="$(echo "$connected" | head -1 | cut -d ' ' -f 3)"
       device_battery="$(bluetoothctl info | grep Battery | cut -d ' ' -f 4 | sed 's/[()]//g')%"
       echo "󰂯 $connected $device_battery"
     fi
@@ -114,7 +117,8 @@ battery() {
     echo "$icon $capacity% [$remaining_time]"
 
 	else
-		echo "󱉝 No battery"
+		# echo "󱉝 No battery"
+    echo ""
 	fi
 }
 
