@@ -1,13 +1,18 @@
 #!/bin/sh
 
 fsmon() {
-	ROOTPART=$(df -h | awk '/\/$/ { print $4 }') 
-	echo " $ROOTPART"
+	ROOTPART=$(df -h | awk '/\/$/ { print $4 }')
+	echo "  $ROOTPART"
 }
 
 ram() {
 	mem=$(free -h | awk '/Mem:/ { print $3 }' | cut -f1 -d 'i')
-	echo " $mem"
+	echo "  $mem"
+}
+
+temperature() {
+  temp=" $(acpi -t | cut -d ' ' -f 4)"
+  echo "$temp"
 }
 
 cpu() {
@@ -17,46 +22,37 @@ cpu() {
 	read -r cpu a b c idle rest < /proc/stat
 	total=$((a+b+c+idle))
 	cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
-	echo " $cpu%"
+	echo "  $cpu%"
+}
+
+bluetooth() {
+  if [ "$(which bluetoothctl)" ]; then
+    connected="$(bluetoothctl devices Connected | head -1 | cut -d ' ' -f 3)"
+    if [ "$connected" ]; then
+      device_battery="$(bluetoothctl info | grep Battery | cut -d ' ' -f 4 | sed 's/[()]//g')%"
+      echo "󰂯 $connected $device_battery"
+    fi
+  fi
 }
 
 network() {
 	route=$(ip route | awk '/default/' | head -n 1)
 	if [ -z "$route" ]; then
-		echo "󱘖 down"
+		echo "󱘖"
   else
     interface=$(echo "$route" | cut -d ' ' -f 5)
-    ssid="$(iw dev $interface info | grep ssid | cut -d ' ' -f 2)"
+    ssid="$(iw dev "$interface" info | grep ssid | cut -d ' ' -f 2)"
     conntype=$(echo "$interface" | awk '{ print substr($1,1,1) }')
-    # ip=$(echo "$route" | cut -d ' ' -f 9)
+    ip=$(echo "$route" | cut -d ' ' -f 9)
     if [ "$conntype" = "e" ]; then
-      echo "󰈀 up"
+      echo "󰈀 $ip"
     else
-      echo "󰖩 up [$ssid]"
+      echo "󰖩  [$ip] [$ssid]"
     fi
 	fi
 }
 
-volume_pa() {
-	muted=$(pactl list sinks | awk '/Mute:/ { print $2 }')
-	vol=$(pactl list sinks | grep Volume: | awk 'FNR == 1 { print $5 }' | cut -f1 -d '%')
-
-	if [ "$muted" = "yes" ]; then
-		echo " muted"
-	else
-		if [ "$vol" -ge 65 ]; then
-			echo " $vol%"
-		elif [ "$vol" -ge 40 ]; then
-			echo " $vol%"
-		elif [ "$vol" -ge 0 ]; then
-			echo " $vol%"	
-		fi
-	fi
-
-}
-
 volume_alsa() {
-
 	mono=$(amixer -M sget Master | grep Mono: | awk '{ print $2 }')
 
 	if [ -z "$mono" ]; then
@@ -68,14 +64,14 @@ volume_alsa() {
 	fi
 
 	if [ "$muted" = "off" ]; then
-		echo " muted"
+		echo " "
 	else
 		if [ "$vol" -ge 65 ]; then
-			echo " $vol%"
+			echo "  $vol%"
 		elif [ "$vol" -ge 40 ]; then
-			echo " $vol%"
+			echo "  $vol%"
 		elif [ "$vol" -ge 0 ]; then
-			echo " $vol%"	
+			echo " $vol%"
 		fi
 	fi
 }
@@ -84,7 +80,7 @@ clock() {
 	date=$(date +"%D")
 	time=$(date +"%H:%M")
 
-	echo " $date  $time"
+	echo "$date $time"
 }
 
 battery() {
@@ -93,27 +89,26 @@ battery() {
 		capacity="$(cat "/sys/class/power_supply/$bat/capacity")"
 		status="$(cat "/sys/class/power_supply/$bat/status")"
     remaining_time="$(acpi -b | cut -d ',' -f 3 | cut -c 2-)"
-
-		if [ $capacity -lt 10 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰢜; else echo 󰁺; fi)
-		elif [ $capacity -lt 20 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂆; else echo 󰁻; fi)
-		elif [ $capacity -lt 30 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂇; else echo 󰁼; fi)
-		elif [ $capacity -lt 40 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂈; else echo 󰁽; fi)
-		elif [ $capacity -lt 50 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰢝; else echo 󰁾; fi)
-		elif [ $capacity -lt 60 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂉; else echo 󰁿; fi)
-		elif [ $capacity -lt 70 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰢞; else echo 󰂀; fi)
-		elif [ $capacity -lt 80 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂊; else echo 󰂁; fi)
-		elif [ $capacity -lt 90 ]; then
-			icon=$(if [ $status = "Charging" ]; then echo 󰂋; else echo 󰂂; fi)
+		if [ "$capacity" -lt 10 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰢜; else echo 󰁺; fi)
+		elif [ "$capacity" -lt 20 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂆; else echo 󰁻; fi)
+		elif [ "$capacity" -lt 30 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂇; else echo 󰁼; fi)
+		elif [ "$capacity" -lt 40 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂈; else echo 󰁽; fi)
+		elif [ "$capacity" -lt 50 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰢝; else echo 󰁾; fi)
+		elif [ "$capacity" -lt 60 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂉; else echo 󰁿; fi)
+		elif [ "$capacity" -lt 70 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰢞; else echo 󰂀; fi)
+		elif [ "$capacity" -lt 80 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂊; else echo 󰂁; fi)
+		elif [ "$capacity" -lt 90 ]; then
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂋; else echo 󰂂; fi)
 		else
-			icon=$(if [ $status = "Charging" ]; then echo 󰂅; else echo 󰁹; fi)
+			icon=$(if [ "$status" = "Charging" ]; then echo 󰂅; else echo 󰁹; fi)
 		fi
 
     echo "$icon $capacity% [$remaining_time]"
@@ -123,4 +118,22 @@ battery() {
 	fi
 }
 
-xsetroot -name "| $(battery) | $(fsmon) | $(ram) | $(cpu) | $(network) | $(volume_alsa) | $(clock)"
+set_status_bar() {
+  if [ "$1" ]; then
+    status_bar="$status_bar $2 $1"
+  fi
+}
+
+div="󰇝"
+status_bar=""
+set_status_bar "$(battery)" "$div"
+set_status_bar "$(temperature)" "$div"
+set_status_bar "$(fsmon)" "$div"
+set_status_bar "$(ram)" "$div"
+set_status_bar "$(cpu)" "$div"
+set_status_bar "$(bluetooth)" "$div"
+set_status_bar "$(network)" "$div"
+set_status_bar "$(volume_alsa)" "$div"
+set_status_bar "$(clock)" "$div"
+
+xsetroot -name "$status_bar"
