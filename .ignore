@@ -1,2 +1,3 @@
 !*
 --glob=!{.git/*,Music/*}
+test

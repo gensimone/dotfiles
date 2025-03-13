@@ -3,6 +3,11 @@ import = [ "~/.config/alacritty/kanagawa-dragon.toml" ]
 
 [window]
 opacity = 1.0
+decorations = "None"
+
+[window.padding]
+x = 10
+y = 0
 
 [font]
 normal = { family = "Terminess Nerd Font", style = "Regular"  }
@@ -10,6 +15,10 @@ bold = { family = "Terminess Nerd Font", style = "Bold"  }
 italic = { family = "Terminess Nerd Font", style = "Italic"  }
 bold_italic = { family = "Terminess Nerd Font", style = "Bold Italic"  }
 size = 13.5
+
+[font.offset]
+x = 0
+y = 0
 
 [cursor]
 style = { shape = "Block", blinking = "On" }
