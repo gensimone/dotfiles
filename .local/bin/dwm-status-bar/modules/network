@@ -1,0 +1,16 @@
+#!/bin/bash
+
+route=$(ip route | awk '/default/' | head -n 1)
+if [ -z "$route" ]; then
+  echo "󱘖"
+else
+  interface=$(echo "$route" | cut -d ' ' -f 5)
+  ssid="$(iw dev "$interface" info | grep ssid | cut -d ' ' -f 2)"
+  conntype=$(echo "$interface" | awk '{ print substr($1,1,1) }')
+  ip=$(echo "$route" | cut -d ' ' -f 9)
+  if [ "$conntype" = "e" ]; then
+    echo "󰈀  [$ip]"
+  else
+    echo "󰖩  [$ip] [$ssid]"
+  fi
+fi

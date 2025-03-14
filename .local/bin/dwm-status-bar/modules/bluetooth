@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$(which bluetoothctl)" ]; then
+  connected="$(bluetoothctl devices Connected)"
+  if [ "$connected" = "No default controller available" ] || ! [ "$connected" ]; then
+    echo ""
+  else
+    connected="$(echo "$connected" | head -1 | cut -d ' ' -f 3)"
+    device_battery="$(bluetoothctl info | grep Battery | cut -d ' ' -f 4 | sed 's/[()]//g')%"
+    echo "󰂯 $connected $device_battery"
+  fi
+fi
