@@ -5,11 +5,6 @@ fsmon() {
 	echo "  $ROOTPART"
 }
 
-temperature() {
-  temp=" $(acpi -t | head -1 | cut -d ' ' -f 4)"
-  echo "$temp"
-}
-
 pkgs() {
   num_pkgs="$(xbps-install --sync --update --dry-run | wc -l)"
   echo " $num_pkgs"
