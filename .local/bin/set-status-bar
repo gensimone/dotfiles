@@ -25,6 +25,11 @@ cpu() {
 	echo "  $cpu%"
 }
 
+pkgs() {
+  num_pkgs="$(xbps-install --sync --update --dry-run | wc -l)"
+  echo " $num_pkgs"
+}
+
 bluetooth() {
   if [ "$(which bluetoothctl)" ]; then
     connected="$(bluetoothctl devices Connected)"
@@ -138,6 +143,7 @@ set_status_bar "$(cpu)" "$div"
 set_status_bar "$(bluetooth)" "$div"
 set_status_bar "$(network)" "$div"
 set_status_bar "$(volume_alsa)" "$div"
+set_status_bar "$(pkgs)" "$div"
 set_status_bar "$(clock)" "$div"
 
 xsetroot -name "$status_bar"
