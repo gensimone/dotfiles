@@ -3,7 +3,7 @@
 # Get the aliases and functions
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-[ -d "$HOME/.local/bin/dwm-status-bar" ] && export PATH="$HOME/.local/bin/dwm-status-bar:$PATH"
+[ -d "$HOME/.local/bin/dwm-sb" ] && export PATH="$HOME/.local/bin/dwm-sb:$PATH"
 
 # Where user-specific configurations should be written.
 export XDG_CONFIG_HOME="$HOME/.config"
