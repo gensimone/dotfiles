@@ -26,16 +26,16 @@ cpu() {
 }
 
 pkgs() {
-  num_pkgs="$(xbps-install --sync --update --dry-run | wc -l)"
-  echo " $num_pkgs"
+  num_pkgs="$(xbps-install --sync --dry-run)"
+  if [ "$num_pkgs" ]; then
+    echo " $(echo "$num_pkgs" | wc -l)"
+  fi
 }
 
 bluetooth() {
   if [ "$(which bluetoothctl)" ]; then
     connected="$(bluetoothctl devices Connected)"
-    if [ "$connected" = "No default controller available" ] || ! [ "$connected" ]; then
-      echo ""
-    else
+    if [ "$connected" != "No default controller available" ] && [ "$connected" ]; then
       connected="$(echo "$connected" | head -1 | cut -d ' ' -f 3)"
       device_battery="$(bluetoothctl info | grep Battery | cut -d ' ' -f 4 | sed 's/[()]//g')%"
       echo "󰂯 $connected $device_battery"
@@ -120,10 +120,6 @@ battery() {
 		fi
 
     echo "$icon $capacity% [$remaining_time]"
-
-	else
-		# echo "󱉝 No battery"
-    echo ""
 	fi
 }
 
