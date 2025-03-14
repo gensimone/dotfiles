@@ -2,17 +2,17 @@
 # Volume
 #
 XF86AudioRaiseVolume
-	amixer sset 'Master' 10%+ && set-status-bar
+	amixer sset 'Master' 10%+ && dwm-sb-update-module.sh volume
 XF86AudioLowerVolume
-	amixer sset 'Master' 10%- && set-status-bar
+	amixer sset 'Master' 10%- && dwm-sb-update-module.sh volume
 XF86AudioMute
-  amixer sset 'Master' 0% && set-status-bar
+  amixer sset 'Master' 0% && dwm-sb-update-module.sh volume
 alt + {ctrl,shift} + i
-	amixer sset 'Master' 10%+ && set-status-bar
+	amixer sset 'Master' 10%+ && dwm-sb-update-module.sh volume
 alt + {ctrl,shift} + d
-	amixer sset 'Master' 10%- && set-status-bar
+	amixer sset 'Master' 10%- && dwm-sb-update-module.sh volume
 # alt + {ctrl,shift} + m
-#   amixer sset 'Master' 0% && set-status-bar
+#   amixer sset 'Master' 0% && dwm-sb-update-module.sh volume
 
 #
 # Screenshots
