@@ -1,6 +1,0 @@
-#!/bin/bash
-
-while true; do
-  set-status-bar
-  sleep 3
-done
