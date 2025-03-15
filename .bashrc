@@ -1,4 +1,10 @@
-# .bashrc
+# ██████╗  █████╗ ███████╗██╗  ██╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║
+# ██████╔╝███████║███████╗███████║
+# ██╔══██╗██╔══██║╚════██║██╔══██║
+# ██████╔╝██║  ██║███████║██║  ██║
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -14,12 +20,14 @@ alias vi='nvim'
 alias vim='nvim'
 alias gpt='tgpt -m'
 
-set -o vi
-
+# Functions
 yt-download() {
   source "$HOME/Venvs/yt-dlp/bin/activate"
   yt-dlp "$@"
   deactivate
 }
 
+# Enable starship
 eval "$(starship init bash)"
+
+set -o vi
