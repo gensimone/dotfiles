@@ -1,3 +1,0 @@
-#!/bin/bash
-
-echo " $(acpi -t | head -1 | cut -d ' ' -f 4)"

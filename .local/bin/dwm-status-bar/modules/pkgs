@@ -1,3 +1,0 @@
-#!/bin/bash
-
-echo " $(xbps-install --sync --dry-run | wc -l)"

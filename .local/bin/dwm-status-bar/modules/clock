@@ -1,5 +1,0 @@
-#!/bin/bash
-
-date=$(date +"%D")
-time=$(date +"%H:%M")
-echo "$date $time"
