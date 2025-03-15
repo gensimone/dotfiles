@@ -3,6 +3,7 @@ SDL2
 SDL2_image
 aalib
 acl
+acpi
 acpid
 adwaita-icon-theme
 alacritty
@@ -84,7 +85,6 @@ expat
 expat-devel
 f2fs-tools
 faac
-fastfetch
 fd
 fdk-aac
 feh
