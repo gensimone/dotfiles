@@ -1,6 +1,11 @@
-#
-# Volume
-#
+# ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗
+# ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
+# ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
+# ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
+# ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+
+# volume
 XF86AudioRaiseVolume
 	amixer sset 'Master' 10%+ && dwm-sb-update-module.sh volume
 XF86AudioLowerVolume
@@ -14,46 +19,27 @@ alt + {ctrl,shift} + d
 # alt + {ctrl,shift} + m
 #   amixer sset 'Master' 0% && dwm-sb-update-module.sh volume
 
-#
-# Screenshots
-#
+# screenshots
 alt + ctrl + s
 	maim --hidecursor -s ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
 alt + ctrl + p
 	maim --hidecursor ~/Pictures/Screenshots/screenshot-$(date +%H:%M:%S).png
 
-#
-# Brightness
-#
+# brightness
 XF86MonBrightnessUp
 	brightnessctl set 10%+
 XF86MonBrightnessDown
 	brightnessctl set 10%-
 
-#
-# Screen lock
-#
+# screen lock
 alt + Escape
 	slock
 
-
-#
-# Neovim
-#
-alt + ctrl + n
-	alacritty --class nvim --command nvim
-
-
-#
-# Pulsemixer
+# pulsemixer
 # --class pulsemixer is used to float the window in dwm
-#
 alt + {ctrl,shift} + m
 	alacritty --class pulsemixer --command pulsemixer
 
-
-#
-# Boot session [full]
-#
+# boot session [full]
 alt + ctrl + b
 	boot-session-full
