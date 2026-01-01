@@ -31,18 +31,6 @@ export VISUAL=vi
 export PROMPT_COMMAND="echo"
 export PYTHON_BASIC_REPL=1
 
-lmlbk() {
-	if ! type rsync 2>/dev/null; then
-		echo "rsync not installed."
-	else
-		lmount $@ && locbk && lumount
-	fi
-}
-
-h() {
-	"$@" --help | less
-}
-
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
