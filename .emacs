@@ -346,7 +346,7 @@
 
 
 ;;; THEME
-(load-theme 'modus-vivendi)
+(load-theme 'modus-operandi-tinted)
 
 
 ;; VARIOUS SETTINGS
