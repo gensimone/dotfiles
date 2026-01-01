@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if ! type rsync >/dev/null; then
+	echo "rsync: not found"
+	exit 1
+else
+	lmount $1 &&
+		locbk &&
+		lumount
+fi
