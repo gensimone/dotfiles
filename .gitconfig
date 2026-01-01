@@ -1,0 +1,19 @@
+[user]
+	name = Simone Gentili
+	email = gensimone.git@gmail.com
+[alias]
+	a = add
+	c = commit
+	d = diff
+	l = log
+	lg = log
+	s = status
+	undo = reset HEAD~
+	unstage = reset HEAD --
+        r = restore
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
+[advice]
+	addIgnoredFile = false
