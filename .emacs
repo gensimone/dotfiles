@@ -73,24 +73,20 @@
     (setq evil-emacs-state-modes
           (delq mode evil-emacs-state-modes))))
 
-;;; EGLOT
-(use-package eglot
-  :straight nil
-  :hook ((python-mode . eglot-ensure)
-         (c-mode      . eglot-ensure)))
-
 ;;; FLYMAKE
-;; FIXME: fringe.
 ;; (use-package flymake
 ;;   :straight nil
-;;   :hook ((prog-mode . flymake-mode))
-;;   :config
-;;   (set-face-attribute 'flymake-error nil :underline nil)
-;;   (set-face-attribute 'flymake-warning nil :underline nil)
-;;   (set-face-attribute 'flymake-note nil :underline nil)
-;;   (setq flymake-show-diagnostics-at-end-of-line nil)
-;;   (setq flymake-fringe-indicator-position nil)
-;;   (setq flymake-no-messages t))
+;;   :hook
+;;   (prog-mode-hook .
+;; 		  (lambda ()
+;; 		    (flymake-mode)
+;; 		    (set-face-attribute 'flymake-error nil :underline nil)
+;; 		    (set-face-attribute 'flymake-warning nil :underline nil)
+;; 		    (set-face-attribute 'flymake-note nil :underline nil)
+;; 		    (setq flymake-show-diagnostics-at-end-of-line nil)
+;; 		    (setq flymake-note-bitmap nil)
+;; 		    (setq flymake-fringe-indicator-position nil))))
+
 
 ;;; SNIPPETS
 (use-package yasnippet
@@ -119,19 +115,19 @@
   :custom
   (vertico-count 15)
   (vertico-cycle nil)
-  (vertico-resize t)
+  (vertico-resize nil)
   (vertico-scroll-margin 0))
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
   (savehist-mode))
-;; Optional: add richer metadata display
+;; Add richer metadata display
 ;; Show additional info like file size/type
 (use-package marginalia
   :after vertico
   :init
   (marginalia-mode))
-;; Optional: flexible completion style
+;; Flexible completion style
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)
@@ -142,11 +138,10 @@
   :after vertico
   :straight nil
   :bind (:map vertico-map
-              ("DEL" . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word)))
+	      ("DEL" . vertico-directory-delete-char)
+	      ("M-DEL" . vertico-directory-delete-word)))
 (use-package consult
   :init
-  ;; TODO: concat with old consult-ripgrep-args ? also fd-args
   (setq consult-ripgrep-args "rg --no-ignore --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
   (setq consult-fd-args "fd --hidden --no-ignore-vcs --full-path --color=never"))
 (use-package recentf
@@ -273,10 +268,11 @@
     "ee" '(eglot :which-key "start eglot")
     "ed" '(eglot-shutdown :which-key "shutdown eglot")
     "er" '(eglot-rename :which-key "eglot rename")
-    ;; DIAGNOSTICS/DEBUG
+    ;; DIAGNOSTICS/DEBUG/DIRED
     "d" '(:ignore t :which-key "diagnostic")
-    "ds" '(flymake-show-project-diagnostics :which-key "show diagnostics")
+    "ds" '(consult-flymake :which-key "show diagnostics")
     "da" '(eglot-code-action-quickfix :which-key "apply quickfix")
+    "dd" '(dired-jump :which-key "dired")
     ;; WINDOWS
     "w" '(:ignore t :which-key "window")
     "wd" '(delete-window :which-key "close window")
@@ -284,6 +280,10 @@
     "wv" '(split-window-horizontally :which-key "split window horizontally")
     "." '(maximize-window :which-key "maximize window")
     "," '(balance-windows :which-key "balance windows")
+    ;; ORG
+    "o" '(:ignore t :which-key "org")
+    "ol" '(org-insert-link :which-key "insert link")
+    "oo" '(org-open-at-point :which-key "open link")
     ;; GIT
     "g" '(:ignore t :which-key "magit")
     "gg" '(magit :which-key "magit-status")
@@ -291,7 +291,9 @@
     ;; VARIOUS
     "l" '(execute-extended-command :which-key "execute command")
     "c" '(compile :which-key "compile")
+    "m" '(consult-man :which-key "man pages")
     "t" '(eshell :which-key "open eshell")))
+
 (use-package which-key
   :config
   (which-key-mode)
@@ -308,6 +310,7 @@
 
 
 ;;; ICONS
+;;; NOTE: exec all-the-icons-install-fonts
 (use-package all-the-icons)
 
 
@@ -343,7 +346,7 @@
 
 
 ;;; THEME
-(load-theme 'misterioso)
+(load-theme 'modus-vivendi)
 
 
 ;; VARIOUS SETTINGS
@@ -359,12 +362,43 @@
       confirm-kill-emacs 'y-or-n-p)
 
 
-;;; DIRED
-(use-package dired-video-thumbnail
-  ;; :load-path "/path/to/dired-video-thumbnail/"
-  :bind (:map dired-mode-map
-	      ("C-t v" . dired-video-thumbnail)))
+;;; MULTIMEDIA
+;; (use-package empv
+;;   :config
+;;   (setq empv-video-dir "~/video")
+;;   (setq empv-audio-dir "~/music"))
 
+
+;;; DIRED
+(use-package dired-open
+  :config
+  (setq dired-open-extensions
+	'(("mp4" . "mpv")
+	  ("mkv" . "mpv")
+	  ("avi" . "mpv")
+	  ("webm" . "mpv")
+	  ("mov" . "mpv"))))
+
+
+;;; DASHBOARD
+;; use-package with package.el:
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+  (setq dashboard-center-content t)
+  (setq dashboard-vertically-center-content t)
+  (setq dashboard-startupify-list '(dashboard-insert-items))
+  (setq dashboard-display-icons-p t)
+  (setq dashboard-icon-type 'all-the-icons)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-week-agenda t)
+  (setq dashboard-items '((recents   . 5)
+                          (bookmarks . 5)
+                          (projects  . 5)
+                          (agenda    . 5)
+                          (registers . 5))))
 
 ;;; WRAPPERS
 ;; Use mpv to open youtube links instead of a web browser.
