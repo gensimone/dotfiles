@@ -391,14 +391,18 @@
   (setq dashboard-startupify-list '(dashboard-insert-items))
   (setq dashboard-display-icons-p t)
   (setq dashboard-icon-type 'all-the-icons)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-heading-icons nil)
+  (setq dashboard-set-file-icons nil)
   (setq dashboard-week-agenda t)
   (setq dashboard-items '((recents   . 5)
                           (bookmarks . 5)
                           (projects  . 5)
-                          (agenda    . 5)
-                          (registers . 5))))
+                          (agenda    . 5))))
+
+;;; SYNTAX
+;;; NIX
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
 ;;; WRAPPERS
 ;; Use mpv to open youtube links instead of a web browser.
