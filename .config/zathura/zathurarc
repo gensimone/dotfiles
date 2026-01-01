@@ -1,7 +1,5 @@
 set font "CaskaydiaCove Nerd Font 14"
 
 set recolor                     true
-set recolor-lightcolor          "#1e1e1e"
-set recolor-darkcolor           "#ffffff"
-
-
+set recolor-lightcolor          "#e3ded6"
+set recolor-darkcolor           "#000000"
