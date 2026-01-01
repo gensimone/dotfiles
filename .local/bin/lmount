@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ "$#" -eq 0 ]; then
+  echo "Device not specified."
+  exit 1
+fi
+
+sudo cryptsetup luksOpen $1 encrypted &&\
+mkdir -vp $HOME/external &&\
+sudo mount --verbose /dev/mapper/encrypted $HOME/external
+
+if [ $? -ne 0 ]; then
+        echo "Aborting.."
+        [ -d $HOME/external ] && rmdir -v $HOME/external
+        if ls /dev/mapper/encrypted 1>/dev/null 2>/dev/null; then
+                sudo cryptsetup luksClose $1
+        fi
+fi
