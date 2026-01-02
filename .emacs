@@ -46,16 +46,20 @@
   :init
   (setq evil-want-integration t
         evil-want-keybinding nil)
+  (setq evil-search-module 'evil-search)
   :config
   (evil-mode 1))
-(setq windmove-wrap-around t)
-(global-set-key (kbd "C-h") #'evil-windmove-left)
-(global-set-key (kbd "C-j") #'evil-windmove-down)
-(global-set-key (kbd "C-k") #'evil-windmove-up)
-(global-set-key (kbd "C-l") #'evil-windmove-right)
+
 (use-package evil-collection
+  ;; :custom
+  ;; (evil-collection-calendar-want-org-bindings t)
+  ;; (evil-collection-outline-bind-tab-p t)
+  ;; (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
+
+(use-package evil-mc
+  :config (evil-mc-mode))
 
 
 ;;; GDB
@@ -72,6 +76,7 @@
                   gdb-disassembly-mode))
     (setq evil-emacs-state-modes
           (delq mode evil-emacs-state-modes))))
+
 
 ;;; FLYMAKE
 ;; (use-package flymake
@@ -96,17 +101,21 @@
   :config
   (yas-reload-all))
 
+
 ;;; AUTO COMPLETION
 (use-package corfu
   :init
   (global-corfu-mode t))
 
+
 ;;; UNDO
 (use-package undo-fu)
+
 (use-package undo-fu-session
   :after undo-fu
   :config
   (undo-fu-session-global-mode))
+
 
 ;;; VERTICO
 (use-package vertico
@@ -117,22 +126,26 @@
   (vertico-cycle nil)
   (vertico-resize nil)
   (vertico-scroll-margin 0))
+
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
   (savehist-mode))
+
 ;; Add richer metadata display
 ;; Show additional info like file size/type
 (use-package marginalia
   :after vertico
   :init
   (marginalia-mode))
+
 ;; Flexible completion style
 (use-package orderless
   :init
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles basic partial-completion)))))
+
 ;; Remove directory when pressing DEL in vertico path.
 (use-package vertico-directory
   :after vertico
@@ -140,36 +153,23 @@
   :bind (:map vertico-map
 	      ("DEL" . vertico-directory-delete-char)
 	      ("M-DEL" . vertico-directory-delete-word)))
+
+;; Fuzzy finder
 (use-package consult
   :init
   (setq consult-ripgrep-args "rg --no-ignore --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
   (setq consult-fd-args "fd --hidden --no-ignore-vcs --full-path --color=never"))
+
 (use-package recentf
   :init
   (recentf-mode 1)
   :custom
-  (recentf-max-saved-items 200)
-  (recentf-max-menu-items 25)
   (recentf-auto-cleanup 'never)
   :config
   (add-to-list 'recentf-exclude "\\.git/.*")
   (add-to-list 'recentf-exclude "/tmp/")
   (add-to-list 'recentf-exclude "recentf"))
 
-(setq make-backup-files nil
-      auto-save-default nil)
-
-;; Turn off global line numbers by default
-(setq display-line-numbers nil)
-
-;; Enable relative line numbers in prog-mode (all programming modes)
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (setq display-line-numbers 'relative)
-            (display-line-numbers-mode 1)))
-
-(setq scroll-margin 8
-      scroll-conservatively 101)
 
 (use-package emacs
   :custom
@@ -193,14 +193,13 @@
 
 ;;; PROJECT
 (use-package projectile
-  :init
-  (setq projectile-project-search-path '("~/codes"))
-  (setq projectile-completion-system 'auto)
-  :config
-  (projectile-mode +1)
-  (setq projectile-enable-caching t) ; Optional: cache projects for speed
-  (setq projectile-globally-ignored-directories
-        '(".git" "node_modules" "dist" "build")))
+  :custom
+  (projectile-project-search-path '("~/codes"))
+  (projectile-completion-system 'auto)
+  (projectile-mode t)
+  (projectile-enable-caching t)
+  (projectile-globally-ignored-directories
+   '(".git" "node_modules" "dist" "build")))
 
 ;;; GIT
 (use-package magit)
@@ -211,10 +210,24 @@
 ;;; ORG
 (use-package org
   :straight nil
+  :config
+  (setq org-agenda-overriding-header "")
   :custom
   (org-directory "~/documents/org")
   (org-hide-emphasis-markers t)
-  (org-startup-indented t))
+  (org-log-done 'time)
+  (org-log-into-drawer t)
+  (org-startup-indented t)
+  ;; org-agenda
+  (org-agenda-compact-blocks t)
+  (org-agenda-files '("~/documents/org"))
+  (org-tag-alist '(("home" . ?h)
+		   ("work" . ?w)
+		   )))
+;; (with-eval-after-load 'org
+;;   (evil-set-initial-state 'org-mode 'normal))
+;; (with-eval-after-load 'org-agenda
+;;   (evil-set-initial-state 'org-agenda-mode 'normal))
 
 
 ;;; MODELINE
@@ -233,13 +246,6 @@
 ;;; KEYMAPS
 (use-package general
   :config
-  (general-override-mode)
-  (general-def 'normal 'override
-    "C-h" 'evil-window-left
-    "C-j" 'evil-window-down
-    "C-k" 'evil-window-up
-    "C-l" 'evil-window-right
-    )
   (general-create-definer my/leader
     :states '(normal visual emacs)
     :keymaps 'override
@@ -320,8 +326,13 @@
 
 
 ;;; FONT
-(add-to-list 'default-frame-alist
-             '(font . "CaskaydiaCove Nerd Font-14"))
+(set-face-attribute 'default nil
+                    :family "CaskaydiaCove Nerd Font"
+                    :height 140)
+
+(set-face-attribute 'variable-pitch nil
+                    :family "CaskaydiaCove Nerd Font"
+                    :height 140)
 
 
 ;;; FORMATTING
@@ -345,13 +356,14 @@
           "https://planet.emacslife.com/atom.xml")))
 
 
-;; HOOKS
+;; FILES
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+;; (setq make-backup-files nil
+;;       auto-save-default nil)
 
 
 ;; UI CUSTOMIZATION
 (global-visual-line-mode)
-(setq display-line-numbers-type 'relative)
 (load-theme 'modus-operandi-tinted)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -362,6 +374,14 @@
       ring-bell-function 'ignore
       use-dialog-box nil
       confirm-kill-emacs 'y-or-n-p)
+;; Turn off global line numbers by default
+(setq display-line-numbers nil)
+;; Enable relative line numbers in prog-mode (all programming modes)
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (setq display-line-numbers 'relative)))
+(setq scroll-margin 8
+      scroll-conservatively 101)
 
 
 ;;; DIRED
@@ -376,25 +396,35 @@
 
 
 ;;; DASHBOARD
-;; use-package with package.el:
 (use-package dashboard
   :config
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+  ;; position
   (setq dashboard-center-content t)
   (setq dashboard-vertically-center-content t)
-  (setq dashboard-startupify-list '(dashboard-insert-items))
+  ;; icons
   (setq dashboard-display-icons-p t)
   (setq dashboard-icon-type 'all-the-icons)
-  (setq dashboard-set-heading-icons nil)
-  (setq dashboard-set-file-icons nil)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-heading-icons t)
+  ;; items
+  (setq dashboard-startupify-list '(dashboard-insert-items))
   (setq dashboard-week-agenda t)
-  (setq dashboard-items '((agenda    . 5))))
+  (setq dashboard-items '((recents   . 5)
+                          (agenda    . 5)))
+  (setq dashboard-item-shortcuts '((recents   . "r")
+                                   (agenda    . "a")))
+  (setq dashboard-item-names '(("Recent Files:"               . "Recently opened files:")
+                               ("Agenda for today:"           . "Today's agenda:")
+                               ("Agenda for the coming week:" . "Agenda:"))))
+
 
 ;;; SYNTAX
 ;;; NIX
 (use-package nix-mode
   :mode "\\.nix\\'")
+
 
 ;;; init.el ends here
 (custom-set-variables
@@ -402,7 +432,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/documents/org/agenda.org")))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
