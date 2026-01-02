@@ -212,7 +212,7 @@
 (use-package org
   :straight nil
   :custom
-  (org-directory "~/org")
+  (org-directory "~/documents/org")
   (org-hide-emphasis-markers t)
   (org-startup-indented t))
 
@@ -248,11 +248,11 @@
   (my/leader
     ;; FILES
     "f" '(:ignore t :which-key "files")
-    "r" '(recentf :which-key "recent")
     "ff" '(find-file :which-key "find file")
     "fg" '(consult-ripgrep :which-key "ripgrep")
     "fc" '(copy-file :which-key "copy file")
-    "fr" '(rename-file :which-key "rename file")
+    "fr" '(consult-recent-file :which-key "recent files")
+    "fm" '(rename-file :which-key "move file")
     "fd" '(delete-file :which-key "delete file")
     ;; PROJECTS
     "pf" '(projectile-switch-project :which-key "find project")
@@ -345,28 +345,23 @@
           "https://planet.emacslife.com/atom.xml")))
 
 
-;;; THEME
-(load-theme 'modus-operandi-tinted)
-
-
-;; VARIOUS SETTINGS
-(setq display-line-numbers-type 'relative)
-(global-visual-line-mode)
+;; HOOKS
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+
+;; UI CUSTOMIZATION
+(global-visual-line-mode)
+(setq display-line-numbers-type 'relative)
+(load-theme 'modus-operandi-tinted)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 35))
 (setq inhibit-startup-message t
       ring-bell-function 'ignore
       use-dialog-box nil
       confirm-kill-emacs 'y-or-n-p)
-
-
-;;; MULTIMEDIA
-;; (use-package empv
-;;   :config
-;;   (setq empv-video-dir "~/video")
-;;   (setq empv-audio-dir "~/music"))
 
 
 ;;; DIRED
@@ -394,26 +389,23 @@
   (setq dashboard-set-heading-icons nil)
   (setq dashboard-set-file-icons nil)
   (setq dashboard-week-agenda t)
-  (setq dashboard-items '((recents   . 5)
-                          (bookmarks . 5)
-                          (projects  . 5)
-                          (agenda    . 5))))
+  (setq dashboard-items '((agenda    . 5))))
 
 ;;; SYNTAX
 ;;; NIX
 (use-package nix-mode
   :mode "\\.nix\\'")
 
-;;; WRAPPERS
-;; Use mpv to open youtube links instead of a web browser.
-;; (defun my/browse-url-mpv (url &optional _new-window)
-;;   "Open YouTube URLs with mpv, everything else with the default browser."
-;;   (if (string-match-p
-;;        (regexp-opt '("youtube.com"))
-;;        url)
-;;       (start-process "mpv" nil "mpv" url)
-;;     (browse-url-default-browser url)))
-;; (advice-add 'browse-url :override #'my/browse-url-mpv)
-
-
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files '("~/documents/org/agenda.org")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
