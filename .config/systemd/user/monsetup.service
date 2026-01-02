@@ -1,0 +1,12 @@
+[Unit]
+Description=Monit Setup Handler
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/home/simone/.local/bin/monsetup
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
