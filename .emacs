@@ -217,7 +217,7 @@
   (setq doom-modeline-height 0)
   (setq doom-modeline-bar-width 0)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-  (setq doom-modeline-icon t)
+  (setq doom-modeline-icon nil)
   (setq doom-modeline-buffer-encoding nil)
   (setq doom-modeline-percent-position '(-3 ""))
   (setq doom-modeline-position-line-format '("")))
