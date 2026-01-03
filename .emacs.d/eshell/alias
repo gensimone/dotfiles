@@ -1,0 +1,17 @@
+alias vi echo "stop."
+alias vim echo "seriously?"
+alias nvim echo "are you drunk?"
+alias df df -h
+alias du du -h
+alias lla ls -la
+alias ll ls -l
+alias rm rm -i $*
+alias cp cp -i $*
+alias mv mv -i $*
+alias ln ln -i $*
+alias autoremove sudo apt autoremove
+alias update sudo apt update && sudo apt upgrade
+alias poweroff systemctl poweroff
+alias reboot systemctl reboot
+alias python python
+alias py python3
