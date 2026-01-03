@@ -1,5 +1,6 @@
 alias autoremove='sudo apt autoremove'
 alias cp='cp -i'
+alias pe='eval $(poetry env activate)'
 alias df='df -h'
 alias du='du -h'
 alias gpt='tgpt -m'
