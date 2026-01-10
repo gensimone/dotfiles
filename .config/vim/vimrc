@@ -1,0 +1,25 @@
+filetype plugin on
+filetype plugin indent on
+set expandtab
+set incsearch
+set nocompatible
+set noruler
+set noshowcmd
+set noswapfile
+set nowrap
+set number
+set relativenumber
+set shm+=I
+set smartindent
+set smarttab
+set wildmenu
+syntax on
+colorscheme elflord
+
+let g:netrw_browse_split = 4
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
+let mapleader = " "
+noremap <F1> <nop>
+map <leader>y "+y
