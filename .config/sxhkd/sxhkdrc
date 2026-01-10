@@ -1,0 +1,38 @@
+XF86AudioRaiseVolume
+        pulsemixer --set-volume +$(($(pulsemixer --get-volume | cut -d ' ' -f 1)+5))
+XF86AudioLowerVolume
+        pulsemixer --set-volume $(($(pulsemixer --get-volume | cut -d ' ' -f 1)-5))
+XF86AudioMute
+        pulsemixer --toggle-mute
+XF86AudioMicMute
+        pulsemixer --toggle-mute --id source-1
+XF86MonBrightnessUp
+	brightnessctl set 10%+
+XF86MonBrightnessDown
+	brightnessctl set 10%-
+alt + i
+        pulsemixer --set-volume +$(($(pulsemixer --get-volume | cut -d ' ' -f 1)+5))
+alt + u
+        pulsemixer --set-volume $(($(pulsemixer --get-volume | cut -d ' ' -f 1)-5))
+alt + m
+        pulsemixer --toggle-mute
+alt + n
+        pulsemixer --toggle-mute --id source-1
+alt + Escape
+	loginctl lock-session
+alt + c
+        clipmenu
+alt + shift + Return
+        st
+alt + d
+        /home/simone/.local/bin/dmenu-docs
+alt + shift + y
+        /home/simone/.local/bin/dmenu-ytdl > /tmp/yt-dlp
+alt + shift + k
+        /home/simone/.local/bin/dmenu-kill
+alt + w
+	/home/simone/.local/bin/dmenu-wall
+alt + a
+        /home/simone/.local/bin/dmenu-dict
+alt + p
+        dmenu_run
