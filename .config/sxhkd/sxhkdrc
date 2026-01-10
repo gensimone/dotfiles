@@ -22,8 +22,6 @@ alt + Escape
 	loginctl lock-session
 alt + c
         clipmenu
-alt + shift + Return
-        st
 alt + d
         /home/simone/.local/bin/dmenu-docs
 alt + shift + y
