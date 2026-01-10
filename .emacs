@@ -3,7 +3,6 @@
 ;;; Code:
 
 (defvar bootstrap-version)
-
 (let ((bootstrap-file
        (expand-file-name
         "straight/repos/straight.el/bootstrap.el"
@@ -41,10 +40,10 @@
   (define-key evil-motion-state-map [escape] #'my/evil-escape))
 
 (use-package evil-collection
-  :custom
-  (evil-collection-setup-minibuffer 1)
   :config
-  (evil-collection-init))
+  (evil-collection-init)
+  :custom
+  (evil-collection-setup-minibuffer t))
 
 (use-package evil-mc
   :config
@@ -100,7 +99,7 @@
   :init
   (vertico-mode 1)
   :custom
-  (vertico-count 10)
+  (vertico-count 5)
   (vertico-cycle nil)
   (vertico-resize nil)
   (vertico-scroll-margin 0))
@@ -144,32 +143,29 @@
   (setenv "PATH" (concat "/home/simone/.local/bin:" (getenv "PATH")))
   (setenv "PATH" (concat "/home/simone/.cargo/bin:" (getenv "PATH")))
   (menu-bar-mode -1)
-  (hl-line-mode)
   (tool-bar-mode -1)
-  (blink-cursor-mode)
   (make-directory "~/.emacs.d/backups/" t)
   (make-directory "~/.emacs.d/auto-saves/" t)
-  ;; Fonts.
+  ;; Gui Only.
   ;; (set-face-attribute 'default nil
-  ;; 		      :family "Monaco Nerd Font Mono"
-  ;; 		      :width 'normal
-  ;; 		      :weight 'normal
+  ;; 		      :family "Monaco Mono Nerd Font"
   ;; 		      :height 140)
   ;; (set-face-attribute 'variable-pitch nil
-  ;; 		      :family "Monaco Nerd Font"
-  ;; 		      :width 'normal
-  ;; 		      :weight 'normal
+  ;; 		      :family "Monaco Mono Nerd Font"
   ;; 		      :height 140)
+  ;; (set-scroll-bar-mode nil)
   :config
+  ;; (add-to-list 'default-frame-alist '(width . 120))
+  ;; (add-to-list 'default-frame-alist '(height . 35))
   (set-fringe-mode 0)
+  (global-visual-line-mode 1)
+  (global-eldoc-mode 0)
   (load-theme 'manoj-dark)
   :hook
   (prog-mode . (lambda ()
 		 (setq display-line-numbers 'relative)))
   (before-save . delete-trailing-whitespace)
   :custom
-  ;; gc
-  (gc-cons-threshold (* 50 1024 1024))
   ;; files and environment
   (exec-path (append '("/home/simone/.local/bin" "/home/simone/.cargo/bin") exec-path))
   (make-backup-files t)
@@ -190,11 +186,10 @@
   (ispell-dictionary "en_US")
   ;; No mouse allowed.
   (context-menu-mode nil)
-  (make-pointer-invisible t)
+  (make-pointer-invisible 1)
   ;; UI releated stuff.
-  (global-visual-line-mode)
   (display-line-numbers nil)
-  (inhibit-startup-message t)
+  (inhibit-startup-message 1)
   (scroll-margin 8)
   (scroll-conservatively 101)
   (save-place-mode 1)
@@ -221,6 +216,10 @@
   (projectile-globally-ignored-directories
    '(".git" "node_modules" "dist" "build")))
 
+(use-package feebleline
+  :config
+  (feebleline-mode 1))
+
 ;; Git.
 (use-package magit) ;; built-in
 (with-eval-after-load 'magit-mode
@@ -244,6 +243,23 @@
 		   ("work" . ?w)
 		   )))
 
+;; Eglot
+(use-package eglot
+  :straight nil ;; built-in
+  :hook
+  (eglot-managed-mode . (lambda () (eglot-inlay-hints-mode 0))))
+
+;; Custom functions.
+(defun my/disable-visual-lines ()
+  (interactive)
+  (global-visual-line-mode -1)
+  (setq-default truncate-lines 1))
+
+(defun my/enable-visual-lines ()
+  (interactive)
+  (global-visual-line-mode 1)
+  (setq-default truncate-lines 0))
+
 ;; Keymaps.
 (use-package general
   :config
@@ -266,6 +282,7 @@
     "ed" 'eglot-shutdown
     "ee" 'eglot
     "er" 'eglot-rename
+    "ei" 'eglot-inlay-hints-mode
     "fc" 'copy-file
     "fd" 'delete-file
     "ff" 'find-file
@@ -285,6 +302,8 @@
     "od" 'org-deadline
     "pf" 'projectile-switch-project
     "pk" 'projectile-kill-buffers
+    "ve" 'my/enable-visual-lines
+    "vd" 'my/disable-visual-lines
     "s" 'async-shell-command
     "t" 'eshell))
 
@@ -299,7 +318,7 @@
   :init
   (global-hl-todo-mode 1))
 
-;; Auto format code
+;; Best thing ever made.
 (use-package format-all
   :hook
   (prog-mode . format-all-mode)
@@ -311,6 +330,11 @@
      ("C" (clang-format))
      ("Python" (ruff))
      )))
+
+;; It removes the modeline and uses the echo area for info.
+(use-package feebleline
+  :config
+  (feebleline-mode 1))
 
 ;; News.
 (use-package elfeed
