@@ -1,0 +1,220 @@
+#!/usr/bin/python
+import sys
+import re
+import shutil
+import subprocess as sp
+from typing import Generator
+from enum import Enum
+
+
+DMENU = "dmenu"
+TRANS = "trans"
+XCLIP = "xclip"
+
+
+class MODE(Enum):
+    DICTIONARY = "Dictionary"
+    TRANSLATE = "Translate"
+
+
+class LANG(Enum):
+    IT = "it"
+    EN = "en"
+
+
+class ACTION(Enum):
+    COPY_ALL = "COPY ALL"
+    LISTEN = "LISTEN"
+
+
+def exec_dmenu(input: str, args: list[str] = [], stdout=sp.PIPE) -> str:
+    cp = sp.run([DMENU] + args, input=input.encode(), stdout=stdout)
+    return cp.stdout.decode()
+
+
+def get_user_lang(langs: list[LANG]) -> LANG:
+    return LANG(
+        exec_dmenu(input="\n".join([x.value for x in langs]), args=["-noi"]).strip()
+    )
+
+
+def get_user_mode() -> MODE:
+    return MODE(
+        exec_dmenu(input="\n".join([x.value for x in MODE]), args=["-noi"]).strip()
+    )
+
+
+def get_user_msg(optional_input: list[str] = []) -> str:
+    return exec_dmenu(input="\n".join(optional_input), args=["-p", "Type:"]).strip()
+
+
+def display(msg: str) -> str:
+    sel = exec_dmenu(args=["-noi", "-l", "25"], input=msg)
+    return sel
+
+
+def handle_trans_mode(
+    msg_to_display: str, *, org_msg: str, tran_msg: str, org_lang_code: str
+) -> None:
+    sel = display(msg_to_display).strip()
+    match sel:
+        case ACTION.LISTEN.value:
+            listen_all(org_msg.split(), lang_code=org_lang_code)
+            handle_trans_mode(
+                msg_to_display,
+                org_msg=org_msg,
+                tran_msg=tran_msg,
+                org_lang_code=org_lang_code,
+            )
+        case ACTION.COPY_ALL.value:
+            set_clipboard(tran_msg)
+        case _:
+            if sel:
+                set_clipboard(sel)
+
+
+def exec_trans(args: list[str] = [], stdout=sp.PIPE) -> str:
+    cp = sp.run([TRANS] + args, stdout=stdout)
+    cp.check_returncode()
+    return cp.stdout.decode()
+
+
+def dictionary(msg: str) -> str:
+    return exec_trans(["-d", "-no-ansi", msg])
+
+
+def translate(msg: str, lang: LANG) -> str:
+    return exec_trans(["-b", "-no-ansi", f":{lang.value}", msg])
+
+
+def get_lang_code(msg: str) -> str:
+    result = exec_trans(args=["-no-ansi", "-identify", msg], stdout=sp.PIPE)
+    code = result.split("\n")[4].split()[-1].strip()
+    assert len(code) == 2, f"Invalid language code: {code}"
+    return code
+
+
+def async_listen(msg: str, lang: LANG) -> sp.Popen:
+    return sp.Popen(
+        [TRANS] + ["-b", "-e", "auto", "-p", f":{lang.value}", msg], stdout=sp.PIPE
+    )
+
+
+def multiline_fmt(ws: list[str], limit: int = 200) -> Generator[str]:
+    tmp: str = ""
+    for w in ws:
+        if not w:
+            continue
+        if len(tmp) + len(w) > limit:
+            yield tmp
+            tmp = w
+        elif len(w) > limit:
+            if tmp:
+                yield tmp
+                tmp = ""
+            tmp_ws = [w[i : i + limit] for i in range(0, len(w), limit)]
+            multiline_fmt(tmp_ws, limit)
+        else:
+            tmp += f" {w}"
+    if tmp:
+        yield tmp
+
+
+def listen(msg: str, lang_code: str = "en") -> None:
+    cp = sp.run(
+        [TRANS] + [f":{lang_code}", "-b", "-e", "auto", "-p", msg], stdout=sp.PIPE
+    )
+    cp.check_returncode()
+
+
+def listen_all(ws: list[str], lang_code: str = "en", limit: int = 200) -> None:
+    for line in multiline_fmt(ws, limit=limit):
+        listen(line, lang_code)
+
+
+def exec_clip(args: list[str] = [], stdout=sp.PIPE) -> str:
+    cp = sp.run([XCLIP] + args, stdout=stdout)
+    return cp.stdout.decode()
+
+
+def get_clipboard_selection() -> str:
+    return exec_clip(args=["-o", "-selection", "clipboard"])
+
+
+def get_primary_selection() -> str:
+    return exec_clip(args=["-o", "-selection", "primary"])
+
+
+def set_clipboard(input: str) -> None:
+    cp = sp.run([XCLIP, "-i"], input=input.encode())
+    cp.check_returncode()
+
+
+def selection_fmt(sel: str) -> str:
+    sel = sel.strip()
+    sel = sel.replace("\n", " ")
+    sel = re.sub(" +", " ", sel)
+    return sel
+
+
+def is_action(s: str) -> bool:
+    try:
+        ACTION(s)
+    except ValueError:
+        return False
+    return True
+
+
+class MissingDependency(Exception):
+    pass
+
+
+def check_deps(deps: list[str]) -> None:
+    for d in deps:
+        if not shutil.which(d):
+            raise MissingDependency(d)
+
+
+def main() -> int:
+    check_deps([DMENU, XCLIP, TRANS])
+
+    mode = get_user_mode()
+
+    # TODO: use original selection for translation.
+    selections = [selection_fmt(get_clipboard_selection())]
+    primary = selection_fmt(get_primary_selection())
+    if primary != selections[0]:
+        selections.append(primary)
+
+    org_msg = get_user_msg(selections)
+    if not org_msg:
+        return 0
+
+    match mode:
+        case MODE.DICTIONARY:
+            msg_to_display = dictionary(org_msg)
+            _ = display(msg_to_display)
+        case MODE.TRANSLATE:
+            org_lang_code = get_lang_code(org_msg)
+            langs = [x for x in LANG if x.value != org_lang_code]
+            if len(langs) > 1:
+                lang = get_user_lang(langs)
+            else:
+                lang = langs[0]
+
+            tran_msg = translate(org_msg, lang).strip()
+            lines = [x.value for x in ACTION]
+            for line in multiline_fmt(tran_msg.split(), limit=180):
+                lines.append(line)
+            msg_to_display = "\n".join(lines)
+            handle_trans_mode(
+                msg_to_display,
+                org_msg=org_msg,
+                tran_msg=tran_msg,
+                org_lang_code=org_lang_code,
+            )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

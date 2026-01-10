@@ -1,0 +1,5 @@
+#!/bin/sh
+
+WALLPAPERS="$(xdg-user-dir PICTURES)/wallpapers"
+CHOOICE=$(find $WALLPAPERS -type f -iregex '.*\.\(jpe?g\|png\|gif\|bmp\|webp\|tiff?\|heic\|heif\|svg\|avif\)' -exec basename {} \; | dmenu -l 10 -p "Select:")
+[ -n "$CHOOICE" ] && feh --bg-fill "$WALLPAPERS/$CHOOICE"

@@ -1,0 +1,51 @@
+#!/usr/bin/python
+import subprocess as sp
+import sys
+
+
+DMENU = "/usr/local/bin/dmenu"
+NOTIFY_SEND = "/usr/bin/notify-send"
+YT_DLP = "/home/simone/.local/bin/yt-dlp"
+YT_DLP_CONFIG = "/home/simone/.config/yt-dlp/config"
+YT_EX = "/home/simone/.local/bin/yt-ex"
+
+def notify(msg: str, urgency: str = "normal") -> None:
+    sp.run([NOTIFY_SEND, "-u", urgency, "-a", "dmenu-ytdl", msg]).check_returncode()
+
+def dmenu(input: str = "", *, args: list[str] = [], stdout=sp.PIPE) -> str:
+    cp = sp.run([DMENU] + args, input=input.encode(), stdout=stdout)
+    return cp.stdout.decode()
+
+def main() -> int:
+    query = dmenu(args=["-p", "Type:"])
+    if not query:
+        return 0
+
+    cp = sp.run([YT_EX, "--title", "--playlist-id", query], stdout=sp.PIPE)
+    if cp.returncode:
+        notify("No results found.") 
+        return 1
+
+    result = cp.stdout.decode()
+
+    d = {' '.join(e.split()[:-1]):e.split()[-1] for e in result.split('\n') if e}
+
+    chooice = dmenu(input='\n'.join(k for k in d), args=["-l", "25", "-p", "Download:"]).strip()
+    if not chooice:
+        return 0
+
+    playlist_id = d[chooice]
+
+    notify(f'Download of "{chooice}" started')
+
+    cp = sp.run([YT_DLP, "--config-location", YT_DLP_CONFIG, "/home/simone", playlist_id], stderr=sp.PIPE)
+    if cp.returncode:
+        notify(cp.stderr.decode())
+        return 1
+
+    notify(f'Download of "{chooice}" finished')
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
