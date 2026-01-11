@@ -2,6 +2,6 @@ clipmenud &
 emacs --daemon &
 sxhkd &
 xss-lock slock &
-dwmbar &
-dwmonsetup &
+~/.local/bin/dwmbar &
+~/.local/bin/dwmonsetup &
 ~/.fehbg &
