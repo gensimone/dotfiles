@@ -216,10 +216,6 @@
   (projectile-globally-ignored-directories
    '(".git" "node_modules" "dist" "build")))
 
-(use-package feebleline
-  :config
-  (feebleline-mode 1))
-
 ;; Git.
 (use-package magit) ;; built-in
 (with-eval-after-load 'magit-mode
@@ -330,11 +326,6 @@
      ("C" (clang-format))
      ("Python" (ruff))
      )))
-
-;; It removes the modeline and uses the echo area for info.
-(use-package feebleline
-  :config
-  (feebleline-mode 1))
 
 ;; News.
 (use-package elfeed
