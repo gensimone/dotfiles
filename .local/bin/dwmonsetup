@@ -2,10 +2,6 @@
 
 state=1
 
-# wait n seconds to prevent xfce
-# to overwrite the first call
-sleep 3
-
 while true; do
 	con=$(xrandr | grep HDMI-1 | cut -d ' ' -f 2)
 	if [ $con = "connected" ]; then
