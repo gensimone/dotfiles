@@ -123,7 +123,7 @@
 (use-package consult
   :custom
   (consult-ripgrep-args "rg --no-ignore --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
-  (consult-fd-args "fdfind --hidden --no-ignore-vcs --full-path --color=never"))
+  (consult-fd-args "fd --hidden --no-ignore-vcs --full-path --color=never"))
 
 ;; Recent files.
 (use-package recentf
