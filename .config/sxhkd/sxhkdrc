@@ -28,6 +28,8 @@ alt + shift + y
         /home/simone/.local/bin/dmenu-ytdl > /tmp/yt-dlp
 alt + shift + k
         /home/simone/.local/bin/dmenu-kill
+alt + shift + Return
+        st
 alt + w
 	/home/simone/.local/bin/dmenu-wall
 alt + a
