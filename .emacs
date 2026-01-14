@@ -126,8 +126,6 @@
   (consult-ripgrep-args "rg --no-ignore --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
   (consult-fd-args "fd --hidden --no-ignore-vcs --full-path --color=never"))
 
-
-
 ;; Recent files.
 (use-package recentf
   :straight nil ;; built-in
@@ -150,20 +148,12 @@
   (make-directory "~/.emacs.d/backups/" t)
   (make-directory "~/.emacs.d/auto-saves/" t)
   ;; Gui Only.
-  ;; (set-face-attribute 'default nil
-  ;; 		      :family "Monaco Mono Nerd Font"
-  ;; 		      :height 140)
-  ;; (set-face-attribute 'variable-pitch nil
-  ;; 		      :family "Monaco Mono Nerd Font"
-  ;; 		      :height 140)
-  ;; (set-scroll-bar-mode nil)
+  (set-frame-font "CaskaydiaMono Nerd Font-14" nil t)
+  (set-scroll-bar-mode nil)
   :config
-  ;; (add-to-list 'default-frame-alist '(width . 120))
-  ;; (add-to-list 'default-frame-alist '(height . 35))
   (set-fringe-mode 0)
   (global-visual-line-mode 1)
   (global-eldoc-mode 0)
-  (load-theme 'manoj-dark)
   :hook
   (prog-mode . (lambda ()
 		 (setq display-line-numbers 'relative)))
@@ -351,5 +341,24 @@
 ;; Syntax on for .nix
 (use-package nix-mode
   :mode "\\.nix\\'")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("ee0785c299c1d228ed30cf278aab82cf1fa05a2dc122e425044e758203f097d2"
+     default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Theme
+(use-package adwaita-dark-theme)
+(load-theme 'adwaita-dark)
 
 ;;; init.el ends here
