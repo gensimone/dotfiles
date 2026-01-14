@@ -27,10 +27,6 @@ export VISUAL=vi
 export PROMPT_COMMAND="echo"
 export PYTHON_BASIC_REPL=1
 
-lmlbk() {
-	lmount $@ && locbk && lumount
-}
-
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
