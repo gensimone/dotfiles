@@ -20,6 +20,8 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
+;; Evil
+
 (use-package evil
   :init
   (setq evil-want-integration t
@@ -57,6 +59,8 @@
       (kbd "C-p") #'evil-mc-make-and-goto-prev-match
       (kbd "gz") #'evil-mc-make-all-cursors)))
 
+;; GDB
+
 (setq gdb-many-windows t)
 (setq gdb-show-main t)
 
@@ -90,11 +94,9 @@
   :init
   (savehist-mode 1))
 
-;; like nvim flash
 (use-package ace-jump-mode)
 (evil-define-key 'normal 'global (kbd "f") #'ace-jump-char-mode)
 
-;; Vertico
 (use-package vertico
   :init
   (vertico-mode 1)
@@ -104,7 +106,6 @@
   (vertico-resize nil)
   (vertico-scroll-margin 0))
 
-;; Vertico extension
 (use-package vertico-directory
   :after vertico
   :straight nil
@@ -124,6 +125,8 @@
   :custom
   (consult-ripgrep-args "rg --no-ignore --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
   (consult-fd-args "fd --hidden --no-ignore-vcs --full-path --color=never"))
+
+
 
 ;; Recent files.
 (use-package recentf
