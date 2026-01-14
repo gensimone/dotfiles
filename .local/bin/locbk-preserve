@@ -1,0 +1,13 @@
+#!/bin/sh
+
+rsync \
+	--archive \
+	--partial \
+	--progress \
+	--verbose \
+	-hhh \
+	/home/simone/codes \
+	/home/simone/documents \
+	/home/simone/music \
+	/home/simone/vault \
+	/home/simone/external/backup
