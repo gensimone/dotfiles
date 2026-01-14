@@ -1,5 +1,5 @@
 sxhkd &
 xss-lock slock &
-~/.local/bin/dwmbar &
-~/.local/bin/dwmonsetup &
+~/.local/bin/dwm-statusbar &
+~/.local/bin/dwm-monsetup-transfer &
 ~/.fehbg &
