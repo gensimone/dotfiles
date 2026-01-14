@@ -1,5 +1,4 @@
 clipmenud &
-emacs --daemon &
 sxhkd &
 xss-lock slock &
 ~/.local/bin/dwmbar &
