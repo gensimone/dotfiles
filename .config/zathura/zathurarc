@@ -1,4 +1,4 @@
-set font "Monaco Nerd Font 14"
+set font "CaskaydiaMono Nerd Font 14"
 
 # Recolor book content's color
 set recolor                     true
