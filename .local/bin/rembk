@@ -1,14 +1,14 @@
 #!/bin/sh
 
 rsync \
---archive \
---partial \
---progress \
---verbose \
--hhh \
---rsh="ssh -p 22  -i /home/simone/.ssh/debian_server_ed25519" \
-/home/simone/codes \
-/home/simone/documents \
-/home/simone/music \
-/home/simone/vault \
-simone@192.168.1.143:/home/simone/backup
+	--archive \
+	--partial \
+	--progress \
+	--verbose \
+	-hhh \
+	--rsh="ssh -p 22  -i /home/simone/.ssh/debian_server_ed25519" \
+	/home/simone/codes \
+	/home/simone/documents \
+	/home/simone/music \
+	/home/simone/vault \
+	simone@192.168.1.143:/home/simone/backup
