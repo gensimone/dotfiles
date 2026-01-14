@@ -3,7 +3,6 @@
 state=1
 
 sleep 3s
-
 while true; do
 	con=$(xrandr | grep HDMI-1 | cut -d ' ' -f 2)
 	if [ $con = "connected" ]; then

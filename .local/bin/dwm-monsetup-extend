@@ -3,9 +3,6 @@
 LAP_DEV="eDP-1"
 HDMI_DEV="HDMI-1"
 
-echo "Screen 1: $LAP_DEV"
-echo "Screen 2: $HDMI_DEV"
-
 update_monitors() {
 	if [ $1 == "connected" ]; then
 		xrandr --auto
@@ -20,8 +17,6 @@ PREV=$(xrandr | grep HDMI-1 | cut -d ' ' -f 2)
 while true; do
 	CUR=$(xrandr | grep HDMI-1 | cut -d ' ' -f 2)
 	if [ $CUR != $PREV ]; then
-		echo "Current state: $CUR"
-		echo "Handler triggered."
 		update_monitors "$CUR"
 		PREV=$CUR
 	fi
