@@ -30,6 +30,8 @@ alt + shift + k
         /home/simone/.local/bin/dmenu-kill
 alt + shift + Return
         st
+alt + e
+	emacsclient -c
 alt + w
 	/home/simone/.local/bin/dmenu-wall
 alt + a
