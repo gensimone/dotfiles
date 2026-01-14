@@ -148,7 +148,8 @@
   (make-directory "~/.emacs.d/backups/" t)
   (make-directory "~/.emacs.d/auto-saves/" t)
   ;; Gui Only.
-  (set-frame-font "CaskaydiaMono Nerd Font-14" nil t)
+  (add-to-list 'default-frame-alist
+               '(font . "CaskaydiaMono Nerd Font-14"))
   (set-scroll-bar-mode nil)
   :config
   (set-fringe-mode 0)
