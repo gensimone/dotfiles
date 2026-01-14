@@ -31,10 +31,6 @@ lmlbk() {
 	lmount $@ && locbk && lumount
 }
 
-h() {
-	"$@" --help | less
-}
-
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
