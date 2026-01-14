@@ -1,4 +1,3 @@
-clipmenud &
 sxhkd &
 xss-lock slock &
 ~/.local/bin/dwmbar &
