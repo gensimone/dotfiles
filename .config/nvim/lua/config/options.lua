@@ -19,7 +19,7 @@ opt.undofile = true
 
 -- UI
 opt.termguicolors = true
-opt.cursorline = false
+opt.cursorline = true
 opt.signcolumn = "no"
 opt.fillchars = { eob = ' ' }
 
@@ -48,3 +48,4 @@ cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.diagnostic.config({
     underline = false,
 })
+

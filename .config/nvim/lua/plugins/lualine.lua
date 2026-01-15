@@ -1,10 +1,10 @@
 return {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    -- dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         require('lualine').setup {
             options = {
-                icons_enabled = true,
+                icons_enabled = false,
                 theme = 'auto',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
@@ -44,7 +44,7 @@ return {
                 lualine_z = {}
             },
             inactive_sections = {
-                lualine_a = { 'mode' },
+                lualine_a = {},
                 lualine_b = {},
                 lualine_c = { 'filename' },
                 lualine_x = {},
