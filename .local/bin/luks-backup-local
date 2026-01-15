@@ -1,0 +1,5 @@
+#!/bin/sh
+
+luks-mount $@ &&\
+        backup-local &&\
+        luks-umount
