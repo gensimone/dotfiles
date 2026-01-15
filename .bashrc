@@ -22,8 +22,8 @@ set -o ignoreeof # Same as setting IGNOREEOF=10
 set -o vi
 
 export PAGER=less
-export EDITOR=vi
 export VISUAL=vi
+export EDITOR=nvim
 export PROMPT_COMMAND="echo"
 export PYTHON_BASIC_REPL=1
 
