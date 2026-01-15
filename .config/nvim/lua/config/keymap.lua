@@ -22,7 +22,7 @@ keymap('n', '<leader>p', ':bp<CR>', { desc = 'Previous buffer' })
 keymap('n', '<leader>ds', builtin.diagnostics, { desc = 'Diagnostics' })
 
 -- Oil
-keymap("n", "<leader>e", ":Oil<CR>", { desc = 'Oil' })
+keymap("n", "<leader>e", ":Oil --float<CR>", { desc = 'Oil' })
 
 -- Git
 keymap('n', '<leader>g', ':Neogit<CR>', { desc = 'Neogit' })

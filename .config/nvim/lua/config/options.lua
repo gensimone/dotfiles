@@ -49,3 +49,5 @@ vim.diagnostic.config({
     underline = false,
 })
 
+-- Rounded corners
+vim.o.winborder = "rounded"

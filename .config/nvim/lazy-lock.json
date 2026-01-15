@@ -1,9 +1,9 @@
 {
-  "adwaita.nvim": { "branch": "main", "commit": "93f3bed009f7fc4c57f8d710880b6cab9e0b0d15" },
   "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
+  "koda.nvim": { "branch": "main", "commit": "b21e91effca3b6238a6ee970699ee93c04f5e602" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
   "multiple-cursors.nvim": { "branch": "main", "commit": "1ac15d047a4b265cc2389957bcc56ee561b29e02" },
