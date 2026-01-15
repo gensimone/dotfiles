@@ -19,7 +19,7 @@ opt.undofile = true
 
 -- UI
 opt.termguicolors = true
-opt.cursorline = true
+opt.cursorline = false
 opt.signcolumn = "no"
 opt.fillchars = { eob = ' ' }
 
@@ -36,11 +36,6 @@ cmd("set shm+=I")
 cmd("set noshowmode")
 cmd("set noshowcmd")
 
--- make transparent window transparent
-cmd("highlight Pmenu guibg=NONE")
-cmd("highlight Float guibg=NONE")
-cmd("highlight NormalFloat guibg=NONE")
-
 -- Auto formatting.
 cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
@@ -50,4 +45,10 @@ vim.diagnostic.config({
 })
 
 -- Rounded corners
-vim.o.winborder = "rounded"
+vim.o.winborder = "bold"
+
+-- Automatically remove trailing whitespace
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = [[%s/\s\+$//e]],   
+})

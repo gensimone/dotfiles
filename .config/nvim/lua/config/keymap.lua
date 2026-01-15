@@ -18,6 +18,10 @@ keymap("n", "<leader>bd", ":bd<CR>", { desc = 'Close current buffer' })
 keymap('n', '<leader>n', ':bn<CR>', { desc = 'Next buffer' })
 keymap('n', '<leader>p', ':bp<CR>', { desc = 'Previous buffer' })
 
+-- Close and save
+keymap('n', '<leader>w', ':w<CR>', { desc = 'Save current file'})
+keymap('n', '<leader>q', ':q<CR>', { desc = 'Save current file'})
+
 -- Diagnostics
 keymap('n', '<leader>ds', builtin.diagnostics, { desc = 'Diagnostics' })
 
