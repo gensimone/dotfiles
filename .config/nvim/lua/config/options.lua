@@ -45,10 +45,10 @@ vim.diagnostic.config({
 })
 
 -- Rounded corners
-vim.o.winborder = "bold"
+vim.o.winborder = "single"
 
 -- Automatically remove trailing whitespace
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
-  command = [[%s/\s\+$//e]],   
+  command = [[%s/\s\+$//e]],
 })

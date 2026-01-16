@@ -26,7 +26,7 @@ keymap('n', '<leader>q', ':q<CR>', { desc = 'Save current file'})
 keymap('n', '<leader>ds', builtin.diagnostics, { desc = 'Diagnostics' })
 
 -- Oil
-keymap("n", "<leader>e", ":Oil --float<CR>", { desc = 'Oil' })
+keymap("n", "<leader>e", ":Oil<CR>", { desc = 'Oil' })
 
 -- Git
 keymap('n', '<leader>g', ':Neogit<CR>', { desc = 'Neogit' })
