@@ -1,32 +1,19 @@
-vim.g.mapleader = " "
-
+vim.g.mapleader = ' '
 local keymap = vim.keymap.set
-
--- Telescope / Find stuff.
-local builtin = require('telescope.builtin')
-keymap('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
-keymap('n', '<leader>fr', builtin.oldfiles, { desc = 'Recent files' })
-keymap('n', '<leader>fg', builtin.live_grep, { desc = 'Ripgrep' })
-keymap('n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
-keymap('n', '<leader>fh', builtin.help_tags, { desc = 'Help' })
-keymap('n', '<leader>fp', ':NeovimProjectDiscover<CR>', { desc = 'Projects' })
-keymap('n', '<leader>fm', function() builtin.man_pages({ sections = { 'ALL' } }) end, { desc = 'Man pages' })
-keymap('n', '<leader>fc', function() builtin.find_files({ cwd = vim.fn.stdpath("config") }) end, { desc = 'Config files' })
-
--- Buffers
-keymap("n", "<leader>bd", ":bd<CR>", { desc = 'Close current buffer' })
-keymap('n', '<leader>n', ':bn<CR>', { desc = 'Next buffer' })
-keymap('n', '<leader>p', ':bp<CR>', { desc = 'Previous buffer' })
-
--- Close and save
-keymap('n', '<leader>w', ':w<CR>', { desc = 'Save current file'})
-keymap('n', '<leader>q', ':q<CR>', { desc = 'Save current file'})
-
--- Diagnostics
-keymap('n', '<leader>ds', builtin.diagnostics, { desc = 'Diagnostics' })
-
--- Oil
-keymap("n", "<leader>e", ":Oil<CR>", { desc = 'Oil' })
-
--- Git
-keymap('n', '<leader>g', ':Neogit<CR>', { desc = 'Neogit' })
+local telescope_builtin = require('telescope.builtin')
+keymap('n', '<leader>ff', telescope_builtin.find_files)
+keymap('n', '<leader>fr', telescope_builtin.oldfiles)
+keymap('n', '<leader>fg', telescope_builtin.live_grep)
+keymap('n', '<leader>fb', telescope_builtin.buffers)
+keymap('n', '<leader>fh', telescope_builtin.help_tags)
+keymap('n', '<leader>fm', function() telescope_builtin.man_pages({ sections = { 'ALL' } }) end)
+keymap('n', '<leader>fc', function() telescope_builtin.find_files({ cwd = vim.fn.stdpath('config') }) end)
+keymap('n', '<leader>fp', ':NeovimProjectDiscover<CR>')
+keymap('n', '<leader>ds', telescope_builtin.diagnostics)
+keymap('n', '<leader>bd', ':bd<CR>')
+keymap('n', '<leader>n', ':bn<CR>')
+keymap('n', '<leader>p', ':bp<CR>')
+keymap('n', '<leader>w', ':w<CR>')
+keymap('n', '<leader>q', ':q<CR>')
+keymap('n', '<leader>e', ':Oil<CR>')
+keymap('n', '<leader>g', ':Neogit<CR>')

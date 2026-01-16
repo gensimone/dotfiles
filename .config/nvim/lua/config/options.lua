@@ -1,51 +1,32 @@
 local opt = vim.opt
-
--- Line numbers
+local cmd = vim.cmd
+local diagnostic = vim.diagnostic.config
+opt.cursorline = false
+opt.expandtab = true
+opt.fillchars = { eob = ' ' }
+opt.hlsearch = false
+opt.ignorecase = true
+opt.incsearch = true
 opt.number = true
 opt.relativenumber = true
-
--- Indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.smartindent = true
-
--- Search
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
-opt.incsearch = true
-opt.undofile = true
-
--- UI
-opt.termguicolors = true
-opt.cursorline = false
-opt.signcolumn = "no"
-opt.fillchars = { eob = ' ' }
-
--- Behavior
-opt.wrap = false
 opt.scrolloff = 8
+opt.shiftwidth = 4
+opt.signcolumn = "no"
+opt.smartcase = true
+opt.smartindent = true
+opt.tabstop = 4
+opt.termguicolors = true
+opt.undofile = true
 opt.updatetime = 300
-
--- statusline
--- vim.o.statusline = "%m %f"
-
-local cmd = vim.cmd
+opt.wrap = false
 cmd("set shm+=I")
 cmd("set noshowmode")
 cmd("set noshowcmd")
-
--- Auto formatting.
 cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
--- Diagnostic
-vim.diagnostic.config({
-    underline = false,
-})
+diagnostic({ underline = false })
 
 -- Rounded corners
-vim.o.winborder = "single"
+vim.o.winborder = "bold"
 
 -- Automatically remove trailing whitespace
 vim.api.nvim_create_autocmd("BufWritePre", {
