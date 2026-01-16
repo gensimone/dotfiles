@@ -22,7 +22,6 @@ return {
             pickers = {
                 live_grep = {
                     additional_args = {
-                        "--no-ignore",
                         "--hidden",
                         "--glob",
                         "!**/.git/*"
@@ -34,7 +33,6 @@ return {
                         "--type", "f",
                         "--hidden",
                         "--follow",
-                        "--no-ignore",
                         "--exclude", ".git"
                     }
                 }
