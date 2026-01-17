@@ -34,3 +34,5 @@ alt + a
         /home/simone/.local/bin/dmenu-dict
 alt + p
         dmenu_run
+alt + shift + Return
+        st
