@@ -3,11 +3,13 @@ return {
   lazy = false,
   build = ':TSUpdate',
   config = function()
-      require'nvim-treesitter.config'.setup {
-          ensure_install = { 'c', 'python', 'lua', 'bash' },
-          auto_install = True,
-          highlight = { enable = true },
-          indent = { enable = true }
-      }
+      require("nvim-treesitter").setup({
+          install = { 'lua', 'c', 'python', 'bash' },
+          config = {
+              highlight = {
+                  enable = true,
+              }
+          }
+      })
   end
 }
