@@ -22,5 +22,5 @@ rsync \
 	/home/simone/documents \
 	/home/simone/music \
 	/home/simone/pictures \
-	/home/simone/vault \
+	/home/simone/private \
     $1

@@ -44,7 +44,6 @@ opt.updatetime = 300
 opt.wrap = false
 cmd("set noshowmode")
 cmd("set noshowcmd")
-cmd("colorscheme default")
 cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 diagnostic({ underline = false })
 
@@ -114,3 +113,5 @@ keymap("t", "<A-k>", [[<C-\><C-n><C-w>+]], opts)
 --         end
 --     end
 -- })
+
+cmd("colorscheme vscode")
