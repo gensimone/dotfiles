@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+if ! [ $# -gt 0 ]; then
+    echo "You need to specify a directory." >&2
+    exit 1
+fi
+
+if ! [ -d $1 ]; then
+    echo "The specified directory does not exist: $1" >&2
+    exit 1
+fi
+
+rsync \
+	--archive \
+	--partial \
+	--progress \
+	--verbose \
+    --delete \
+	-hhh \
+	/home/simone/codes \
+	/home/simone/documents \
+	/home/simone/music \
+	/home/simone/pictures \
+	/home/simone/vault \
+    $1

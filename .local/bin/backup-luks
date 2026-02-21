@@ -1,0 +1,38 @@
+#!/bin/sh
+
+if ! [ $# -gt 0 ]; then
+    echo "You need to specify a device." >&2
+    exit 1
+fi
+
+if ! [ -b $1 ]; then
+    echo "Not a block device: $1" >&2
+    exit 1
+fi
+
+if ls /dev/mapper/encrypted >/dev/null 2>&1; then
+    read -p "/dev/mapper/encrypted already exist. Continue anyway? [y/n]: " answer
+    if [ "$answer" != "Y" ] && [ "$answer" != "y" ]; then
+        echo "Aborted." >&2
+        exit 1
+    fi
+else
+    sudo cryptsetup luksOpen $1 encrypted || exit 1
+fi
+
+
+
+sudo mount --mkdir /dev/mapper/encrypted ~/external || {
+    sudo cryptsetup luksClose encrypted
+    echo "Aborted." >&2;
+    exit 1
+}
+
+mkdir -pv ~/external/backup && backup ~/external/backup || {
+    sudo umount -v ~/external && sudo cryptsetup luksClose encrypted
+    echo "Aborted." >&2;
+    exit 1
+}
+
+sudo umount ~/external || exit 1
+sudo cryptsetup luksClose encrypted
