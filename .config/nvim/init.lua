@@ -32,6 +32,7 @@ opt.ignorecase = true
 opt.incsearch = true
 opt.number = true
 opt.relativenumber = true
+opt.laststatus = 0
 opt.scrolloff = 8
 opt.shiftwidth = 4
 opt.signcolumn = "no"
