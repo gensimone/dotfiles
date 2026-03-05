@@ -77,6 +77,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    acpi
+    alsa-utils
     bash-completion
     clang-tools
     cmus
@@ -89,6 +91,7 @@
     git
     gnumake
     grim
+    lm_sensors
     mako
     man-pages
     mpv
@@ -117,7 +120,7 @@
   ];
 
   environment.shellAliases = {
-      rebuild = "nixos-rebuild switch --sudo --flake ~/nixos";
+      rebuild = "nixos-rebuild switch --sudo --flake ~/.config/nixos";
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
