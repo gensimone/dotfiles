@@ -1,1 +1,3 @@
-set font 'JetBrainsMono Nerd Font 12'
+set font 'JetBrainsMono Nerd Font 10'
+
+include noctaliarc
