@@ -115,4 +115,4 @@ keymap("t", "<A-k>", [[<C-\><C-n><C-w>+]], opts)
 --     end
 -- })
 
-cmd("colorscheme vscode")
+require('matugen').setup()
